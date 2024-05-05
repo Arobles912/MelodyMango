@@ -1,0 +1,170 @@
+body{
+  overflow-x: hidden;
+}
+
+.bg-div {
+  overflow-y: auto;
+
+  width: 100vw;
+  min-height: 100vh;
+  background-image: url("src/assets/bg_images/bg-image2-blur.jpg");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.main-div {
+  width: 100%;
+  font-size: larger;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  margin-bottom: 120px;
+}
+
+form {
+  box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.5);
+  width: 25%;
+  background: linear-gradient(to bottom, #131a2c 0%, #091124 100%);
+  padding: 0 30px 30px 30px;
+  border-radius: 10px;
+  margin-bottom: 40px;
+}
+
+input {
+  width: 95%;
+  border: 1px solid #000b1d;
+  border-radius: 10px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  padding: 5px;
+}
+
+.submit {
+  width: 70%;
+  font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", Segoe UI Symbol, "Noto Color Emoji";
+  font-weight: bold;
+  background: linear-gradient(to right, #f39b04 0%, #f38304 50%, #f36c04 100%);
+  border-radius: 20px;
+  color: white;
+  font-size: 20px;
+  display: block;
+  margin: 10px auto;
+  margin-top: 20px;
+  padding-left: 60px;
+  padding-right: 60px;
+  margin-bottom: 30px;
+}
+
+.submit:hover {
+  background: linear-gradient(to right, #f37b04 0%, #f36004 50%, #f34c04 100%);
+  transition: 0.2s;
+}
+
+.register-submit {
+  width: 70%;
+  font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", Segoe UI Symbol, "Noto Color Emoji";
+  font-weight: bold;
+  background: linear-gradient(to right, #f39b04 0%, #f38304 50%, #f36c04 100%);
+  border-radius: 20px;
+  color: white;
+  font-size: 20px;
+  display: block;
+  margin: 10px auto;
+  margin-top: 10px;
+  padding-left: 60px;
+  padding-right: 60px;
+  margin-bottom: 30px;
+}
+
+.register-submit:hover {
+  background: linear-gradient(to right, #f37b04 0%, #f36004 50%, #f34c04 100%);
+  transition: 0.2s;
+}
+
+label {
+  font-size: 23px;
+  font-family: "Anek Gurmukhi", sans-serif;
+  color: white;
+}
+
+form p {
+  font-family: "Anek Gurmukhi", sans-serif;
+  font-size: 23px;
+  text-align: center;
+  color: white;
+}
+
+.register-link {
+  text-decoration: none;
+  font-weight: 700;
+  text-align: center;
+  color: #f36c04;
+}
+
+.register-link:hover {
+  color: rgb(243, 56, 4);
+  transition: 0.2s;
+}
+
+form h2 {
+  font-family: "Poppins", sans-serif;
+  font-size: 40px;
+  font-weight: 600;
+  text-align: center;
+  color: #f36c04;
+}
+
+.icon-img {
+  background-color: white;
+  border-radius: 30px;
+  margin-bottom: -6px;
+  margin-right: 10px;
+  padding: 0;
+  width: 28px;
+  height: 28px;
+}
+
+.checkbox-container {
+  width: auto;
+  margin-right: 8px;
+  justify-content: left;
+  display: flex;
+  align-items: center;
+}
+
+.checkbox-container input {
+  appearance: none;
+  background-color: #fff;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #f36c04;
+  border-radius: 10px;
+  position: relative;
+}
+
+.checkbox-container input:checked::after {
+  content: "";
+  background-color: #f36c04;
+  border-radius: 10px;
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.checkbox-container label {
+  font-size: 18px;
+  margin-top: 5px;
+  margin-left: 10px;
+}
