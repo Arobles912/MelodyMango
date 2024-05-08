@@ -5,7 +5,7 @@ import Header from "../components/login_components/Header.jsx";
 import Footer from "../components/login_components/Footer.jsx";
 
 export default function Register({ username, setUsername }) {
-  const [pass, setPassword] = useState("");
+  const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -13,7 +13,7 @@ export default function Register({ username, setUsername }) {
   const handleRegister = async (event) => {
     event.preventDefault();
 
-    if (!username || !pass || !email) {
+    if (!username || !password || !email) {
       setError("All fields are required.");
       return;
     }
@@ -26,7 +26,7 @@ export default function Register({ username, setUsername }) {
         },
         body: JSON.stringify({
           username,
-          pass,
+          password,
           email,
         }),
       });
@@ -78,7 +78,7 @@ export default function Register({ username, setUsername }) {
             type="password"
             id="password"
             name="password"
-            value={pass}
+            value={password}
             onChange={(e) => setPassword(e.target.value)}
             maxLength={50}
           />
