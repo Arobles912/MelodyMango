@@ -38,7 +38,7 @@ form {
 }
 
 input {
-  width: 95%;
+  width: 100%;
   border: 1px solid #000b1d;
   border-radius: 10px;
   margin-top: 10px;
@@ -53,7 +53,7 @@ input {
   font-weight: bold;
   background: linear-gradient(to right, #f39b04 0%, #f38304 50%, #f36c04 100%);
   border-radius: 20px;
-  color: white;
+  color: rgb(233, 242, 248);
   font-size: 20px;
   display: block;
   margin: 10px auto;
@@ -75,7 +75,7 @@ input {
   font-weight: bold;
   background: linear-gradient(to right, #f39b04 0%, #f38304 50%, #f36c04 100%);
   border-radius: 20px;
-  color: white;
+  color: rgb(233, 242, 248);
   font-size: 20px;
   display: block;
   margin: 10px auto;
@@ -93,14 +93,14 @@ input {
 label {
   font-size: 23px;
   font-family: "Anek Gurmukhi", sans-serif;
-  color: white;
+  color: rgb(233, 242, 248);
 }
 
 form p {
   font-family: "Anek Gurmukhi", sans-serif;
   font-size: 23px;
   text-align: center;
-  color: white;
+  color: rgb(233, 242, 248);
 }
 
 .register-link {
@@ -124,7 +124,7 @@ form h2 {
 }
 
 .icon-img {
-  background-color: white;
+  background-color: rgb(233, 242, 248);
   border-radius: 30px;
   margin-bottom: -6px;
   margin-right: 10px;
@@ -143,7 +143,7 @@ form h2 {
 
 .checkbox-container input {
   appearance: none;
-  background-color: #fff;
+  background-color: rgb(233, 242, 248);
   width: 20px;
   height: 20px;
   border: 1px solid #f36c04;

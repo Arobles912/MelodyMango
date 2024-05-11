@@ -1,0 +1,261 @@
+
+nav {
+  display: flex;
+  width: 100%;
+  margin-bottom: 10px;
+  bottom: 0;
+  background-color: #0b1b34;
+  height: auto;
+  border-bottom: 2px solid #f37804;
+}
+
+.nav-link-div {
+  display: flex;
+  align-items: center; 
+  margin-right: auto;
+  margin-left: 10px; 
+}
+
+.nav-link {
+  font-weight: 600;
+  font-family: "Fira-code", sans-serif;
+  color: rgb(233, 242, 248);
+  font-size: 20px;
+  margin-right: 10px;
+  margin-left: 10px; 
+  text-decoration: none;
+}
+
+.nav-link:hover {
+  text-decoration: underline 2px solid;
+}
+
+.search-bar-icon {
+  display: none;
+  cursor: pointer;
+}
+
+.logo-container {
+  margin-right: auto;
+  display: flex;
+  align-items: center; 
+  margin-bottom: 5px;
+}
+
+.logo-container img {
+  margin: 0;
+  width: 100px;
+  height: 100px;
+}
+
+.logo-container img:hover{
+  cursor: pointer;
+}
+
+.search-bar-div {
+  margin-top: auto;
+  margin-bottom: auto;
+  width: 18%;
+  margin-right: 30px;
+}
+
+.search-bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.search-bar-input {
+  color: rgb(233, 242, 248);
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid black;
+  background-color: #090d19;
+  height: 20px;
+  padding: 8px;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-left: 35px;
+}
+
+.search-icon {
+  color: rgb(233, 242, 248);
+  position: absolute;
+  left: 10px; 
+}
+
+.logo-container h3 {
+  font-size: 30px;
+  font-family: "Lexend", sans-serif;
+  font-weight: 600;
+  color: #f37804;
+  text-shadow: 4px 4px 4px black;
+  line-height: 1.2;
+}
+
+.logo-container h3:hover{
+  cursor: pointer;
+}
+
+.user-icon-img {
+  width: 50px;
+  height: 50px;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-right: 10px;
+  border-radius: 50px;
+  background-color: rgb(233, 242, 248);
+}
+
+.user-icon-img:hover {
+  cursor: pointer;
+}
+
+.right-side-div {
+  display: flex;
+  align-items: center; 
+  margin-right: 40px;
+}
+
+.right-side-div button {
+  font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", Segoe UI Symbol, "Noto Color Emoji";
+  width: 130px;
+  outline: none;
+  border: none;
+  color: rgb(233, 242, 248);
+  padding-left: 15px;
+  padding-right: 15px;
+  font-size: 18px;
+  margin-right: auto;
+  margin-top: 10px;
+  height: 30px;
+  border-radius: 10px;
+  background: linear-gradient(to right, #f39b04 0%, #f38304 50%, #f36c04 100%);
+  font-weight: bold;
+  outline: none;
+}
+
+.right-side-div button:hover {
+  background: linear-gradient(to right, #f37b04 0%, #f36004 50%, #f34c04 100%);
+  transition: 0.2s;
+}
+
+.right-side-div p {
+  font-family: "Fira-code", sans-serif;
+  color: #f37804;
+  font-weight: 600;
+  font-size: 22px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.right-side-div p:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.dropdown-content {
+  border-radius: 10px;
+  border: none;
+  min-width: 220px;
+  width: auto;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  margin-top: 40px;
+  z-index: 99;
+  right: 0;
+  margin-right: 20px;
+  background: linear-gradient(to bottom, #131a2c 0%, #091124 100%);
+  box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-50px);
+  transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.dropdown-content.show {
+  opacity: 1;
+  pointer-events: all;
+  transform: translateY(0px);
+}
+
+.dropdown-content img {
+  width: 40px;
+  height: 40px;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-right: 10px;
+  border-radius: 50px;
+  background-color: rgb(233, 242, 248);
+}
+
+.dropdown-content hr{
+  margin-top: 20px;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+#hr-2{
+  margin-top: 10px;
+}
+
+.dropdown-content a {
+  font-family: "Anek Gurmukhi", sans-serif;
+  font-size: 22px;
+  text-decoration: none;
+  margin: 5px;
+  font-weight: 600;
+  color: rgb(233, 242, 248);
+  margin-top: 8px;
+}
+
+.dropdown-link-div {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.link-icon{
+  color: rgb(233, 242, 248);
+  width: 28px;
+  height: 28px;
+  margin-top: 2px;
+  margin-bottom: 0;
+  margin-right: 10px;
+}
+
+
+.dropdown-content a:hover {
+  text-decoration: underline;
+}
+
+.dropdown-content div {
+  display: flex;
+}
+
+.dropdown-content span {
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-top: 10px;
+  font-family: "Anek Gurmukhi", sans-serif;
+  font-size: 22px;
+  color: #f37804;
+  font-weight: 600;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.separation-div {
+  border-radius: 3px;
+  border: 1px solid black;
+  margin: 8px;
+  height: 50px;
+  width: 4px;
+  background-color: #f37804;
+}
+

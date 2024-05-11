@@ -1,0 +1,106 @@
+
+.bg-div-home {
+  overflow-y: auto;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  overflow-x: hidden;
+  top: 0;
+  left: 0;
+  background-color: #090d19;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+.main-home-div{
+  width: 100%;
+}
+
+.time-period-div{
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  margin-top: -10px;
+}
+
+.time-period-div button{
+  padding-top: 9px;
+  padding-bottom: 9px;
+  font-size: 18px;
+  border: none;
+  color: rgb(233, 242, 248);
+  width: 100%;
+  background-color: #090d19;
+  font-weight: 500;
+  font-family: "Poppins", sans-serif;
+}
+
+.songs-div {
+  color: white;
+  box-sizing: border-box;
+  width: calc(100% - 80px); 
+  background-color: #0b1b34;
+  margin: 20px 40px;
+}
+
+.songs-div h2{
+  padding: 20px;
+  font-family: "Fira-code", sans-serif;
+}
+
+.songs-list {
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.song-list {
+  flex: 1 0 25%; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.song-info {
+  font-family: "Poppins", sans-serif;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.songs-div img {
+  width: 80px;
+  height: 80px;
+}
+
+
+
+.time-period-div button:hover{
+  background-color: #121a32;
+}
+
+input[type="text"]:focus{
+  outline: 2px solid black;
+  border: 1px solid transparent;
+}
+
+input[type="password"]:focus{
+  outline: 2px solid black;
+  border: 1px solid transparent;
+}
+
+input[type="email"]:focus{
+  outline: 2px solid black;
+  border: 1px solid transparent;
+}
+
+input[type="submit"]:hover{
+  cursor: pointer;
+}
+
+button{
+  cursor: pointer;
+}
+
+
