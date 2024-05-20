@@ -12,7 +12,8 @@ export default function Navbar({
   setIsLoggedIn,
   setToken,
   setUsername,
-  setSearchTerm
+  setSearchTerm,
+  spotifyApi
 }) {
   const navigate = useNavigate();
   const [menuVisible, setMenuVisible] = useState(false);
@@ -25,8 +26,23 @@ export default function Navbar({
       localStorage.removeItem("token");
       setUsername("");
       localStorage.removeItem("username");
+      localStorage.removeItem("spotifyToken");
+      localStorage.removeItem("spotifyRefreshToken");
+      spotifyApi.setAccessToken(null);
       setIsLoggedIn(false);
       navigate("/");
+      const width = 700;
+      const height = 500;
+      const left = window.screen.width / 2 - width / 2;
+      const top = window.screen.height / 2 - height / 2;
+      const spotifyLogoutWindow = window.open(
+        "https://www.spotify.com/logout/",
+        "Spotify Logout",
+        `width=${width},height=${height},top=${top},left=${left}`
+      );
+      setTimeout(() => {
+        spotifyLogoutWindow.close();
+      }, 2000);
     }
   };
 

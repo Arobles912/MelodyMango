@@ -42,6 +42,19 @@ nav {
   margin-bottom: 5px;
 }
 
+.logo-container h3 {
+  font-size: 30px;
+  font-family: "Lexend", sans-serif;
+  font-weight: 600;
+  color: #f37804;
+  text-shadow: 4px 4px 4px black;
+  line-height: 1.2;
+}
+
+.logo-container h3:hover{
+  cursor: pointer;
+}
+
 .logo-container img {
   margin: 0;
   width: 100px;
@@ -83,19 +96,6 @@ nav {
   color: rgb(233, 242, 248);
   position: absolute;
   left: 10px; 
-}
-
-.logo-container h3 {
-  font-size: 30px;
-  font-family: "Lexend", sans-serif;
-  font-weight: 600;
-  color: #f37804;
-  text-shadow: 4px 4px 4px black;
-  line-height: 1.2;
-}
-
-.logo-container h3:hover{
-  cursor: pointer;
 }
 
 .user-icon-img {
