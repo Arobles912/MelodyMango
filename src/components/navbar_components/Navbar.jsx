@@ -72,7 +72,7 @@ export default function Navbar({
         </a>
         <div className="separation-div"></div>
         <a className="nav-link" name="addcustomer" href="/">
-          Account
+          Friends
         </a>
         <div className="separation-div"></div>
         <a className="nav-link" name="addcustomer" href="/">
@@ -116,7 +116,7 @@ export default function Navbar({
             <hr />
             <div className="dropdown-link-div">
             <FontAwesomeIcon icon={faUsers}  className="link-icon"/>
-              <a href="">Friends</a>
+              <a href="">Account</a>
             </div>
             <div className="dropdown-link-div">
             <FontAwesomeIcon icon={faGear}  className="link-icon"/>

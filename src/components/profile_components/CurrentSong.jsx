@@ -58,9 +58,7 @@ export default function CurrentSong({ spotifyToken, spotifyApi }) {
           albumImage: "src/assets/logos/melodymango-logo.jpeg",
         });
       }
-    }).catch((err) => {
-      console.error("Error fetching current song:", err);
-    });
+    })
   }
 
   return (

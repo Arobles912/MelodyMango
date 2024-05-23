@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import Home from "./pages/Home";
+import Profile from "./pages/Profile";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -26,7 +26,7 @@ function App() {
           }
         />
         <Route path="/register" element={<Register username={username} setUsername={setUsername} />} />
-        <Route path="/home" element={<Home setIsLoggedIn={setIsLoggedIn}/>} />
+        <Route path="/home" element={<Profile setIsLoggedIn={setIsLoggedIn}/>} />
       </Routes>
     </Router>
   );
