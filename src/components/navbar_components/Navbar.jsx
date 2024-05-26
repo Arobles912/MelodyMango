@@ -1,18 +1,15 @@
-import React from "react";
-import "./styles/Navbar.css";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect, useRef } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUsers, faGear } from '@fortawesome/free-solid-svg-icons';
 import SearchBar from "./SearchBar";
-
+import "./styles/Navbar.css";
 
 export default function Navbar({
   username,
   setIsLoggedIn,
   setToken,
   setUsername,
-  setSearchTerm,
   spotifyApi
 }) {
   const navigate = useNavigate();
@@ -50,7 +47,6 @@ export default function Navbar({
     setMenuVisible(!menuVisible);
   };
 
-
   const handleClickOutside = (event) => {
     if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
       setMenuVisible(false);
@@ -58,6 +54,7 @@ export default function Navbar({
   };
 
   useEffect(() => {
+    setUsername(localStorage.getItem("username"))
     document.addEventListener("click", handleClickOutside, true);
     return () => {
       document.removeEventListener("click", handleClickOutside, true);
@@ -92,7 +89,7 @@ export default function Navbar({
         <h3>Melody Mango</h3>
       </div>
       <div className="search-bar-div">
-        <SearchBar setSearchTerm={setSearchTerm}/>
+        <SearchBar />
       </div>
       <div className="right-side-div">
         <img
@@ -131,5 +128,4 @@ export default function Navbar({
       </div>
     </nav>
   );
-  
 }

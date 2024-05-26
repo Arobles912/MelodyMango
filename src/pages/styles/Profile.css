@@ -1,15 +1,12 @@
 .bg-div-home {
   overflow-y: auto;
   width: 100vw;
-  height: 100vh;
-  position: fixed;
+  height: 100%;
   overflow-x: hidden;
   top: 0;
   left: 0;
   background-color: #090d19;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center center;
+  position: relative;
 }
 
 .main-home-div {
@@ -38,6 +35,31 @@
 
 .time-period-div button:hover {
   background-color: #121a32;
+}
+
+.login-spotify-div{
+  display: flex;
+  margin: 250px 40px;
+  width: auto;
+  justify-content: center;
+}
+
+.login-spotify-button{
+  font-size: 25px;
+  padding: 10px 25px;
+  border-radius: 20px;
+  font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+  "Segoe UI Emoji", Segoe UI Symbol, "Noto Color Emoji";
+  background: linear-gradient(to right, #f39b04 0%, #f38304 50%, #f36c04 100%);
+  border: none;
+  color: rgb(233, 242, 248);
+  font-weight: bold;
+
+}
+
+.login-spotify-button:hover {
+  background: linear-gradient(to right, #f37b04 0%, #f36004 50%, #f34c04 100%);
+  transition: 0.2s;
 }
 
 input[type="text"]:focus {

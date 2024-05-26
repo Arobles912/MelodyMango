@@ -1,5 +1,5 @@
-import React from 'react';
-import "./styles/CardArrows.css"
+import React from "react";
+import "./styles/CardArrows.css";
 
 export default function CardArrows({ currentIndex, setIndex, length }) {
   const handleMoveRight = () => {

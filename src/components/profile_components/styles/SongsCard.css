@@ -1,7 +1,7 @@
 .songs-div {
     color: rgb(233, 242, 248);
     box-sizing: border-box;
-    width: calc(100% - 80px);
+    width: auto;
     background-color: #0b1b34;
     margin: 20px 40px;
   }
@@ -24,7 +24,7 @@
     flex: 0 0 200px;
     flex-direction: column;
     align-items: center;
-    margin-left: 20px;
+    margin-left: 21px;
     margin-right: 20px;
     margin-bottom: 20px;
   }
@@ -72,3 +72,12 @@
     text-overflow: ellipsis;
   }
   
+  /* @media only screen and (max-width: 2559px) {
+    .songs-div {
+      color: rgb(233, 242, 248);
+      box-sizing: border-box;
+      width: 2170px;
+      background-color: #0b1b34;
+      margin: 20px auto;
+    }
+  } */
