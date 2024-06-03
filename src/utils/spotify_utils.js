@@ -1,5 +1,5 @@
-// spotifyUtils.js
 import SpotifyWebApi from "spotify-web-api-js";
+import { fetchUserId, fetchSpotifyDataByUserId } from "./api_calls";
 
 const spotifyApi = new SpotifyWebApi();
 
@@ -8,13 +8,41 @@ export const handleLogin = () => {
     import.meta.env.VITE_SPOTIFY_CLIENT_ID
   }&response_type=code&redirect_uri=${
     import.meta.env.VITE_SPOTIFY_REDIRECT_URI
-  }&scope=user-top-read user-read-currently-playing user-read-playback-state`;
+  }&scope=user-top-read user-read-currently-playing user-read-playback-state user-read-email user-read-private`;
 };
 
 export const saveSpotifyTokenToDatabase = async (username, accessToken, refreshToken) => {
   try {
+    const userId = await fetchUserId(username);
+    let dataId = await fetchSpotifyDataByUserId(userId);
+
+    if (!dataId) {
+      console.log("Creating new entry in spotify-data for user:", username);
+      const createResponse = await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}/spotify-data`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            userId: userId,
+            spotifyToken: accessToken,
+            refreshToken: refreshToken,
+          }),
+        }
+      );
+
+      if (!createResponse.ok) {
+        throw new Error(`Error creating Spotify data: ${createResponse.statusText}`);
+      }
+
+      const createData = await createResponse.json();
+      dataId = createData.id;
+    }
+
     const response = await fetch(
-      `${import.meta.env.VITE_BACKEND_URL}/users/username/${username}`,
+      `${import.meta.env.VITE_BACKEND_URL}/spotify-data/${dataId}`,
       {
         method: "PUT",
         headers: {
@@ -26,14 +54,58 @@ export const saveSpotifyTokenToDatabase = async (username, accessToken, refreshT
         }),
       }
     );
+
     if (!response.ok) {
-      console.error(
-        "Error saving Spotify token to database:",
-        response.statusText
-      );
+      throw new Error(`Error updating Spotify token: ${response.statusText}`);
     }
+
+    console.log("Spotify token saved to database for user:", username);
   } catch (error) {
     console.error("Error saving Spotify token to database:", error);
+  }
+};
+
+export const saveSpotifyProfileToDatabase = async (username, spotifyUsername, spotifyEmail) => {
+  try {
+    const userId = await fetchUserId(username);
+    const dataId = await fetchSpotifyDataByUserId(userId);
+
+    if (!dataId) {
+      console.log("Creating new profile entry in spotify-data for user:", username);
+      const response = await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}/spotify-data`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            spotifyUsername: spotifyUsername,
+            spotifyEmail: spotifyEmail,
+            userId: userId
+          }),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(`Error creating Spotify profile: ${response.statusText}`);
+      }
+
+      console.log("Spotify profile saved to database for user:", username);
+    }
+  } catch (error) {
+    console.error("Error saving Spotify profile to database:", error);
+  }
+};
+
+export const fetchSpotifyUserProfile = async (accessToken) => {
+  spotifyApi.setAccessToken(accessToken);
+  try {
+    const data = await spotifyApi.getMe();
+    return { username: data.id, email: data.email };
+  } catch (error) {
+    console.error("Error fetching Spotify user profile:", error);
+    return null;
   }
 };
 
@@ -62,12 +134,20 @@ export const refreshSpotifyToken = async (username, refreshToken, setSpotifyToke
     localStorage.setItem("spotifyToken", access_token);
     spotifyApi.setAccessToken(access_token);
 
+    const userProfile = await fetchSpotifyUserProfile(access_token);
+    const spotifyUsername = userProfile?.username;
+    const spotifyEmail = userProfile?.email;
+
     if (newRefreshToken) {
       setRefreshToken(newRefreshToken);
       localStorage.setItem("spotifyRefreshToken", newRefreshToken);
       await saveSpotifyTokenToDatabase(username, access_token, newRefreshToken);
     } else {
       await saveSpotifyTokenToDatabase(username, access_token, refreshToken);
+    }
+
+    if (spotifyUsername && spotifyEmail) {
+      await saveSpotifyProfileToDatabase(username, spotifyUsername, spotifyEmail);
     }
 
     console.log("Spotify token refreshed:", access_token);
@@ -111,7 +191,16 @@ export const getTokensFromUrl = async (username, setSpotifyToken, setRefreshToke
       localStorage.setItem("spotifyRefreshToken", refresh_token);
 
       spotifyApi.setAccessToken(access_token);
-      saveSpotifyTokenToDatabase(username, access_token, refresh_token);
+
+      const userProfile = await fetchSpotifyUserProfile(access_token);
+      if (userProfile && userProfile.username && userProfile.email) {
+        await saveSpotifyProfileToDatabase(username, userProfile.username, userProfile.email);
+      } else {
+        console.error("Failed to fetch Spotify user profile.");
+      }
+
+      await saveSpotifyTokenToDatabase(username, access_token, refresh_token);
+      
     } catch (error) {
       console.error('Error fetching tokens:', error);
     }
@@ -120,32 +209,13 @@ export const getTokensFromUrl = async (username, setSpotifyToken, setRefreshToke
 
 export const fetchSpotifyTokenFromDatabase = async (username, setSpotifyToken, setRefreshToken) => {
   try {
-    const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/users/username/${username}`);
+    const userId = await fetchUserId(username);
+    const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/spotify-data/user/${userId}`);
     if (response.ok) {
       const data = await response.json();
-      const tokenFromDatabase = data.spotifyToken;
-      const refreshTokenFromDatabase = data.refreshToken;
-      if (tokenFromDatabase) {
-        const tokenExpirationTime = 3600 * 1000; 
-        const tokenStoredTime = localStorage.getItem('spotifyTokenStoredTime') || Date.now();
-
-        if (Date.now() - tokenStoredTime >= tokenExpirationTime) {
-          const newAccessToken = await refreshSpotifyToken(username, refreshTokenFromDatabase, setSpotifyToken, setRefreshToken);
-          if (newAccessToken) {
-            setSpotifyToken(newAccessToken);
-            localStorage.setItem("spotifyToken", newAccessToken);
-            localStorage.setItem("spotifyTokenStoredTime", Date.now());
-            spotifyApi.setAccessToken(newAccessToken);
-          }
-        } else {
-          setSpotifyToken(tokenFromDatabase);
-          spotifyApi.setAccessToken(tokenFromDatabase);
-          localStorage.setItem("spotifyTokenStoredTime", tokenStoredTime);
-        }
-      }
+      const refreshTokenFromDatabase = data[0].refreshToken;
       if (refreshTokenFromDatabase) {
-        setRefreshToken(refreshTokenFromDatabase);
-        localStorage.setItem("spotifyRefreshToken", refreshTokenFromDatabase);
+        await refreshSpotifyToken(username, refreshTokenFromDatabase, setSpotifyToken, setRefreshToken);
       }
     }
   } catch (error) {

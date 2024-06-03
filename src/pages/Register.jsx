@@ -33,7 +33,7 @@ export default function Register({ username, setUsername }) {
 
       if (response.ok) {
         console.log("User registered successfully");
-        alert("User registered succesfully.");
+        alert("User registered successfully.");
         navigate("/");
       } else {
         const data = await response.json();
@@ -48,7 +48,7 @@ export default function Register({ username, setUsername }) {
   return (
     <div className="bg-div">
       <div className="main-div">
-      <Header />
+        <Header />
         <form onSubmit={handleRegister}>
           <h2>Sign Up</h2>
           <img

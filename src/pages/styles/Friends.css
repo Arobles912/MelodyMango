@@ -1,0 +1,133 @@
+.bg-div-friends {
+  overflow-y: auto;
+  width: 100vw;
+  height: 100%;
+  overflow-x: hidden;
+  top: 0;
+  left: 0;
+  background-color: #090d19;
+  position: relative;
+}
+
+.friends-container {
+  width: 100%;
+}
+
+.friends-list-selector-div {
+  width: calc(100% - 80px);
+  display: flex;
+  justify-content: space-around;
+  margin-right: 40px;
+  margin-left: 40px;
+}
+
+.friends-link{
+  width: 100%;
+}
+
+.friends-list-selector-div button {
+  padding-top: 9px;
+  padding-bottom: 9px;
+  font-size: 22px;
+  border: none;
+  color: rgb(233, 242, 248);
+  width: 100%;
+  background-color: #090d19;
+  font-weight: 500;
+  font-family: "Poppins", sans-serif;
+}
+
+.friends-list-selector-div button:hover {
+  background-color: #121a32;
+}
+
+.friends-list {
+  width: 100%;
+  width: calc(100% - 80px);
+  margin: 40px;
+  background-color: #0b1b34;
+}
+
+.friend-item{
+    padding: 20px;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.friend-item img {
+  border-radius: 50px;
+  background-color: rgb(233, 242, 248);
+  box-shadow: 0px 0px 6px 6px rgba(0, 0, 0, 0.5);
+  width: 100px;
+  height: 100px;
+  margin-right: 20px;
+}
+
+.left-friend-item-div{
+    color: rgb(233, 242, 248);
+    font-size: 18px;
+    display: flex;
+    font-family: "Poppins", sans-serif;
+}
+
+
+.friend-username-p{
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 20px;
+  color: #f37804;
+}
+
+.friend-info{
+  margin-top: 10px;
+}
+
+.friend-info-request{
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.friend-username-request-p{
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 22px;
+  color: #f37804;
+}
+
+.friend-song-p{
+  max-width: 600px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; 
+}
+
+.friend-song-p span{
+  color: #f33804;
+}
+
+.right-friend-item-div{
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right: 50px;
+}
+
+.right-friend-item-div button{
+    font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", Segoe UI Symbol, "Noto Color Emoji";
+  outline: none;
+  border: none;
+  color: rgb(233, 242, 248);
+  font-size: 18px;
+  padding: 5px 15px;
+  border-radius: 10px;
+  background: linear-gradient(to right, #f37704 0%, #f35804 50%, #f32004 100%);
+  font-weight: bold;
+  outline: none;
+  margin: 10px;
+}
+
+.right-friend-item-div button:hover{
+    background: linear-gradient(to right, #f35804 0%, #f32404 50%, #f30404 100%);
+    transition: 0.2s;
+}

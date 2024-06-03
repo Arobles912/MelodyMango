@@ -127,12 +127,10 @@ nav {
   outline: none;
   border: none;
   color: rgb(233, 242, 248);
-  padding-left: 15px;
-  padding-right: 15px;
+  padding: 3px 15px;
   font-size: 18px;
   margin-right: auto;
   margin-top: 10px;
-  height: 30px;
   border-radius: 10px;
   background: linear-gradient(to right, #f39b04 0%, #f38304 50%, #f36c04 100%);
   font-weight: bold;

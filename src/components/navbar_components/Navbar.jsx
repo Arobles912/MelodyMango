@@ -1,17 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUsers, faGear } from '@fortawesome/free-solid-svg-icons';
 import SearchBar from "./SearchBar";
 import "./styles/Navbar.css";
+import logo from '../../assets/logos/melodymango-logo-removebg.png';
+import userIcon from '../../assets/icon_images/user-icon.png';
 
-export default function Navbar({
-  username,
-  setIsLoggedIn,
-  setToken,
-  setUsername,
-  spotifyApi
-}) {
+export default function Navbar({ setIsLoggedIn, setToken, spotifyApi }) {
+  const [username, setUsername] = useState(localStorage.getItem("username"));
   const navigate = useNavigate();
   const [menuVisible, setMenuVisible] = useState(false);
   const dropdownRef = useRef(null);
@@ -64,26 +61,26 @@ export default function Navbar({
   return (
     <nav>
       <div className="nav-link-div">
-        <a className="nav-link" name="addproject" href="/">
+        <Link className="nav-link" to="/home">
           Home
-        </a>
+        </Link>
         <div className="separation-div"></div>
-        <a className="nav-link" name="addcustomer" href="/">
-          Friends
-        </a>
+        <Link className="nav-link" to={`/profile/${username}`}>
+          Profile
+        </Link>
         <div className="separation-div"></div>
-        <a className="nav-link" name="addcustomer" href="/">
+        <Link className="nav-link" to="/browse">
           Browse
-        </a>
+        </Link>
         <div className="separation-div"></div>
-        <a className="nav-link" name="addcustomer" href="/">
+        <Link className="nav-link" to="/top">
           Top
-        </a>
+        </Link>
       </div>
       <div className="logo-container">
         <img
           className="navbar-logo"
-          src="src/assets/logos/melodymango-logo-removebg.png"
+          src={logo}
           alt="example-logo"
         />
         <h3>Melody Mango</h3>
@@ -94,7 +91,7 @@ export default function Navbar({
       <div className="right-side-div">
         <img
           className="user-icon-img"
-          src="src/assets/icon_images/user-icon.png"
+          src={userIcon}
           alt="user-icon"
           onClick={toggleMenu}
           ref={dropdownRef}
@@ -107,17 +104,17 @@ export default function Navbar({
             className={menuVisible ? "dropdown-content show" : "dropdown-content"}
           >
             <div>
-              <img src="src/assets/icon_images/user-icon.png" alt="user-icon"></img>
+              <img src={userIcon} alt="user-icon"></img>
               <span>{username}</span>
             </div>
             <hr />
             <div className="dropdown-link-div">
-            <FontAwesomeIcon icon={faUsers}  className="link-icon"/>
-              <a href="">Account</a>
+              <FontAwesomeIcon icon={faUsers} className="link-icon"/>
+              <Link to={`/friends`}>Friends</Link>
             </div>
             <div className="dropdown-link-div">
-            <FontAwesomeIcon icon={faGear}  className="link-icon"/>
-              <a href="">Settings</a>
+              <FontAwesomeIcon icon={faGear} className="link-icon"/>
+              <Link to="/settings">Settings</Link>
             </div>
             <hr id="hr-2"/>
             <button name="logoutbutton" onClick={handleLogout}>

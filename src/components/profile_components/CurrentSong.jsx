@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./styles/CurrentSong.css"
+import noSong from '../../assets/logos/melodymango-logo.jpeg';
 
 export default function CurrentSong({ spotifyToken, spotifyApi }) {
   const [currentSong, setCurrentSong] = useState({
@@ -55,7 +56,7 @@ export default function CurrentSong({ spotifyToken, spotifyApi }) {
         setCurrentSong({
           name: "No song currently playing.",
           artist: "",
-          albumImage: "src/assets/logos/melodymango-logo.jpeg",
+          albumImage: noSong,
         });
       }
     })

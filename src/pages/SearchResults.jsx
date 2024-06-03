@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import "./styles/SearchResults.css";
 
 export default function SearchResults({ spotifyApi }) {
   const [searchTracks, setSearchTracks] = useState([]);
   const [searchArtists, setSearchArtists] = useState([]);
-  const [searchUsers, setSearchUsers] = useState([]); 
+  const [searchUsers, setSearchUsers] = useState([]);
   const location = useLocation();
   const query = new URLSearchParams(location.search).get("query");
   const username = localStorage.getItem("username");
@@ -41,10 +41,9 @@ export default function SearchResults({ spotifyApi }) {
           }
         );
         const data = await response.json();
-        console.log("User data response:", data); 
 
         if (response.ok) {
-          setSearchUsers(data); 
+          setSearchUsers(data);
         } else {
           console.error("Error: Expected a user object");
           setSearchUsers([]);
@@ -107,19 +106,22 @@ export default function SearchResults({ spotifyApi }) {
             )}
           </div>
           <div className="users-section">
-            <h3>Users</h3> {/* Cambiado a plural */}
+            <h3>Users</h3>
             {searchUsers.length > 0 ? (
               searchUsers.map((user) => (
-                <div key={user.userId} className="result-item">
+                <Link key={user.userId} to={`/profile/${user.username}`} className="result-item">
                   <img
-                    src={user.profileImage || "src/assets/icon_images/user-icon.png"}
+                    src={
+                      user.profileImage ||
+                      "src/assets/icon_images/user-icon.png"
+                    }
                     alt={user.username}
                   />
                   <div className="result-info-user">
                     <p className="result-title">{user.username}</p>
                     <p className="result-email">{user.email}</p>
                   </div>
-                </div>
+                </Link>
               ))
             ) : (
               <p>No users found</p>

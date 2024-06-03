@@ -1,39 +1,54 @@
-import { useState, useEffect } from "react";
-import Navbar from "../components/navbar_components/Navbar";
+import { useState, useEffect, useRef } from "react";
+import { useParams } from "react-router-dom";
 import "./styles/Profile.css";
 import {
   handleLogin,
   getTokensFromUrl,
   fetchSpotifyTokenFromDatabase,
   spotifyApiInstance as spotifyApi,
-} from "../utils/spotify_calls/spotify_utils";
+} from "../utils/spotify_utils";
 import SongsCard from "../components/profile_components/SongsCard";
 import ArtistsCard from "../components/profile_components/ArtistsCard";
 import GenresCard from "../components/profile_components/GenresCard";
-import CurrentSong from "../components/profile_components/CurrentSong";
+import UserInfo from "../components/profile_components/UserInfo";
 
-export default function Profile({ setIsLoggedIn }) {
-  const [username, setUsername] = useState(
-    localStorage.getItem("username") || ""
-  );
-  const [token, setToken] = useState(localStorage.getItem("token") || "");
-  const [spotifyToken, setSpotifyToken] = useState(
-    localStorage.getItem("spotifyToken") || ""
-  );
-  const [refreshToken, setRefreshToken] = useState(
-    localStorage.getItem("spotifyRefreshToken") || ""
-  );
+export default function Profile() {
+  const { username } = useParams();
+  const [spotifyToken, setSpotifyToken] = useState("");
+  const [refreshToken, setRefreshToken] = useState("");
   const [timeRange, setTimeRange] = useState("short_term");
 
-  useEffect(() => {
-    getTokensFromUrl(username, setSpotifyToken, setRefreshToken);
-  }, []);
+  const initialRender = useRef(true);
 
   useEffect(() => {
-    if (username) {
-      fetchSpotifyTokenFromDatabase(username, setSpotifyToken, setRefreshToken);
+    const fetchTokens = async () => {
+      await getTokensFromUrl(username, setSpotifyToken, setRefreshToken);
+      await fetchSpotifyTokenFromDatabase(username, setSpotifyToken, setRefreshToken);
+    };
+
+    if (initialRender.current) {
+      initialRender.current = false;
+      fetchTokens();
+    } else {
+      setSpotifyToken("");
+      setRefreshToken("");
+      fetchTokens();
     }
   }, [username]);
+
+  useEffect(() => {
+    const refreshIfNeeded = async () => {
+      const tokenStoredTime = localStorage.getItem('spotifyTokenStoredTime') || 0;
+      const tokenExpirationTime = 3600 * 1000; 
+      if (Date.now() - tokenStoredTime >= tokenExpirationTime) {
+        await refreshSpotifyToken(username, refreshToken, setSpotifyToken, setRefreshToken);
+      }
+    };
+
+    const intervalId = setInterval(refreshIfNeeded, 60000); 
+
+    return () => clearInterval(intervalId);
+  }, [username, refreshToken]);
 
   return (
     <main>
@@ -48,6 +63,7 @@ export default function Profile({ setIsLoggedIn }) {
           )}
           {spotifyToken && (
             <div>
+              <UserInfo username={username} spotifyToken={spotifyToken} spotifyApi={spotifyApi} />
               <div className="time-period-div">
                 <button
                   className="time-period-button"
@@ -64,28 +80,27 @@ export default function Profile({ setIsLoggedIn }) {
                   6 months
                 </button>
                 <button
-                  className="time-period-button"
+                  className="time-period-button-3"
                   type="button"
                   onClick={() => setTimeRange("long_term")}
                 >
                   1 year
                 </button>
-                <CurrentSong
-                  spotifyToken={spotifyToken}
-                  spotifyApi={spotifyApi}
-                />
               </div>
               <SongsCard
+                key={username + "songs"} 
                 spotifyToken={spotifyToken}
                 timeRange={timeRange}
                 spotifyApi={spotifyApi}
               />
               <ArtistsCard
+                key={username + "artists"} 
                 spotifyToken={spotifyToken}
                 timeRange={timeRange}
                 spotifyApi={spotifyApi}
               />
               <GenresCard
+                key={username + "genres"} 
                 spotifyToken={spotifyToken}
                 timeRange={timeRange}
                 spotifyApi={spotifyApi}

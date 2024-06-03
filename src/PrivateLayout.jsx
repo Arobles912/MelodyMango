@@ -2,11 +2,7 @@ import React from 'react';
 import { Outlet, Navigate } from 'react-router-dom';
 import Navbar from "./components/navbar_components/Navbar";
 
-function PrivateLayout({ isLoggedIn, username, setIsLoggedIn, setToken, setUsername, spotifyApi }) {
-  if (!isLoggedIn) {
-    return <Navigate to="/" />;
-  }
-
+function PrivateLayout({username, setIsLoggedIn, setToken, setUsername, spotifyApi }) {
   return (
     <>
       <Navbar

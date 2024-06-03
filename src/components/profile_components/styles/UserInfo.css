@@ -1,0 +1,55 @@
+.user-info-main-div {
+  color: rgb(233, 242, 248);
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.user-info-div {
+  display: flex;
+  margin: 20px 60px;
+}
+
+.user-info-p-div {
+  margin: auto 0px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 22px;
+}
+
+.user-info-img {
+  margin-right: 40px;
+  width: 150px;
+  height: 150px;
+  border-radius: 100px;
+  background-color: rgb(233, 242, 248);
+}
+
+.p-username {
+  color: #f37804;
+}
+
+.add-friend-div {
+  margin-left: 40px;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.add-friend-button {
+  font-size: 20px;
+  padding: 10px 25px;
+  border-radius: 20px;
+  font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", Segoe UI Symbol, "Noto Color Emoji";
+  background: linear-gradient(to right, #f39b04 0%, #f38304 50%, #f36c04 100%);
+  border: none;
+  color: rgb(233, 242, 248);
+  font-weight: bold;
+}
+
+
+.add-friend-button:hover{
+    background: linear-gradient(to right, #f37b04 0%, #f36004 50%, #f34c04 100%);
+    transition: 0.2s;
+}

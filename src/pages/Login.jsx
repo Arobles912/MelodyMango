@@ -1,19 +1,26 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./styles/Login.css";
 import Header from "../components/login_components/Header.jsx";
 import Footer from "../components/login_components/Footer.jsx";
 
-export default function Login({ setIsLoggedIn, username, setUsername }) {
+export default function Login({ setIsLoggedIn, setUsername }) {
+  const [username, setLocalUsername] = useState("");
   const [password, setPassword] = useState(""); 
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
       setIsLoggedIn(true);
+      const storedUsername = localStorage.getItem("username");
+      if (storedUsername) {
+        setUsername(storedUsername);
+        navigate(`/home`);
+      }
     }
-  }, []);
+  }, [setIsLoggedIn, setUsername, navigate]);
 
   const handleLogin = async (event) => {
     event.preventDefault();
@@ -34,6 +41,8 @@ export default function Login({ setIsLoggedIn, username, setUsername }) {
         localStorage.setItem("token", token); 
         localStorage.setItem("username", username);
         setIsLoggedIn(true);
+        setUsername(username);
+        navigate(`/home`);
       } else {
         const data = await response.json();
         setError(data.message || "Incorrect username or password");
@@ -62,7 +71,7 @@ export default function Login({ setIsLoggedIn, username, setUsername }) {
             id="username"
             name="username"
             value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            onChange={(e) => setLocalUsername(e.target.value)}
             maxLength={30}
           />
           <br />

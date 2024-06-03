@@ -14,11 +14,11 @@
 }
 
 .time-period-div {
-  width: 100%;
+  width: calc(100% - 80px);
   display: flex;
   justify-content: space-around;
-  margin-left: 40px;
-  
+  margin-right: 40px;
+  margin-left: 40px; 
 }
 
 .time-period-div button {

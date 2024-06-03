@@ -23,6 +23,8 @@ export default function SongsCard({ spotifyToken, timeRange, spotifyApi }) {
 
     if (spotifyToken) {
       fetchSongData();
+    } else{
+
     }
   }, [spotifyToken, timeRange]);
 
