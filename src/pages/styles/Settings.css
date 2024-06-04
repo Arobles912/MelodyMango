@@ -1,0 +1,179 @@
+.bg-div-settings {
+  overflow-y: auto;
+  width: 100vw;
+  height: 100%;
+  overflow-x: hidden;
+  top: 0;
+  left: 0;
+  background-color: #0e1528;
+  position: relative;
+  color: rgb(233, 242, 248);
+}
+
+.main-profile-settings {
+  width: 100%;
+}
+
+.settings-top-div-container {
+  font-family: "Fira-code", sans-serif;
+  display: flex;
+  background-color: #162246;
+}
+
+.settings-top-div {
+  width: 85%;
+  margin: auto;
+  border-bottom: 1px solid #f37804;
+  border-left: 1px solid #f37804;
+}
+
+.settings-top-div h2 {
+  text-align: center;
+}
+
+.return-top-div {
+  display: flex;
+  width: 15%;
+  border-bottom: 1px solid #f37804;
+}
+
+.return-top-div button {
+  color: rgb(233, 242, 248);
+  margin: auto 10px;
+  height: auto;
+  width: auto;
+  font-size: 30px;
+  background-color: transparent;
+  border: none;
+  border-radius: 20px;
+  padding-right: 20px;
+  padding-left: 20px;
+}
+
+.return-top-div button:hover {
+  background-color: #1a396c;
+}
+
+.return-top-div h4 {
+  width: auto;
+  font-size: 18px;
+  padding-top: 3px;
+  margin: auto 0;
+}
+
+.body-container-settings {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+}
+
+aside {
+  background-color: #162246;
+  display: flex;
+  flex-direction: column;
+  width: 15%;
+  border-right: 1px solid #f37804;
+  padding-top: 10px;
+}
+
+.aside-link {
+  display: flex;
+  width: calc(100% - 70px);
+  border-radius: 10px;
+  margin-left: 10px;
+  margin-bottom: 5px;
+  padding: 10px 15px;
+  font-family: "Fira-code", sans-serif;
+  margin-bottom: 10px;
+}
+
+.aside-link:hover {
+  background-color: #1a396c;
+  cursor: pointer;
+}
+
+.aside-link.active{
+    background-color: #1a396c;
+}
+
+.aside-link-icon{
+    color: rgb(233, 242, 248);
+    width: 21px;
+    height: 21px;
+    margin-right: 10px;
+}
+
+aside span {
+  margin: auto 0;
+  text-decoration: none;
+  color: rgb(233, 242, 248);
+}
+
+.options-div-container{
+    font-family: "Poppins", sans-serif;
+    justify-content: left;
+    width: 85%;
+    display: flex;
+    flex-direction: column;
+}
+
+.options-div-container span{
+    margin-left: 20px;
+    color: rgb(157, 165, 171);
+}
+
+.option-div{
+    font-size: 20px;
+    display: flex;
+    margin: 10px;
+}
+
+.option-div p{
+    margin: 0;
+    padding: 10px;
+}
+
+/* To hide the checkbox */
+input[type="checkbox"][id^="checkboxInput"] {
+    display: none;
+  }
+  
+  .toggleSwitch {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin: auto 10px;
+    width: 50px;
+    height: 30px;
+    background-color: rgb(82, 82, 82);
+    border-radius: 20px;
+    cursor: pointer;
+    transition-duration: .2s;
+  }
+  
+  .toggleSwitch::after {
+    content: "";
+    position: absolute;
+    height: 10px;
+    width: 10px;
+    left: 5px;
+    background-color: transparent;
+    border-radius: 50%;
+    transition-duration: .2s;
+    box-shadow: 5px 2px 7px rgba(8, 8, 8, 0.26);
+    border: 5px solid rgb(233, 242, 248);
+  }
+  
+  input[type="checkbox"][id^="checkboxInput"]:checked + .toggleSwitch::after {
+    transform: translateX(100%);
+    transition-duration: .2s;
+    background-color: rgb(233, 242, 248);
+  }
+  
+  input[type="checkbox"][id^="checkboxInput"]:checked + .toggleSwitch {
+    background-color: #f37804;
+    transition-duration: .2s;
+  }
+  
+  

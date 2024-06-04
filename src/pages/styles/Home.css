@@ -1,0 +1,91 @@
+.bg-div-home {
+  overflow-y: auto;
+  width: 100vw;
+  height: 100vh;
+  overflow-x: hidden;
+  top: 0;
+  left: 0;
+  background-color: #090d19;
+  position: relative;
+}
+
+.main-home-div {
+  width: 100%;
+}
+
+.entry-home-div-container {
+  width: 100%;
+  margin: 30px 0;
+}
+
+.entry-home-div-container h1 {
+  font-family: "Kalam", cursive;
+  font-size: 70px;
+  font-weight: 600;
+  color: #f37804;
+  text-shadow: 4px 4px 4px black;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.entry-home-div {
+  display: flex;
+  justify-content: center;
+}
+
+.entry-home-div img {
+  width: 400px;
+  margin-right: 50px;
+  box-shadow: 0px 0px 10px 10px rgba(34, 51, 100, 0.5);
+}
+
+.entry-home-content-div {
+  margin-top: auto;
+  margin-bottom: auto;
+  width: 400px;
+}
+
+.entry-home-content-phrase{
+  color: rgb(233, 242, 248);
+  font-weight: 600;
+  font-size: 50px;
+  text-shadow: 3px 3px 3px black;
+  font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", Segoe UI Symbol, "Noto Color Emoji";
+}
+
+.entry-home-content-link{
+  width: 400px;
+  background: linear-gradient(to right, #f37704 0%, #f36004 50%, #f33804 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 600;
+  font-size: 50px;
+  font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", Segoe UI Symbol, "Noto Color Emoji";
+}
+
+.login-spotify-div {
+  display: flex;
+  margin: 250px 40px;
+  width: auto;
+  justify-content: center;
+}
+
+.login-spotify-button {
+  font-size: 25px;
+  padding: 10px 25px;
+  border-radius: 20px;
+  font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", Segoe UI Symbol, "Noto Color Emoji";
+  background: linear-gradient(to right, #f39b04 0%, #f38304 50%, #f36c04 100%);
+  border: none;
+  color: rgb(233, 242, 248);
+  font-weight: bold;
+}
+
+.login-spotify-button:hover {
+  background: linear-gradient(to right, #f37b04 0%, #f36004 50%, #f34c04 100%);
+  transition: 0.2s;
+}

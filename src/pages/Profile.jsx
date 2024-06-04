@@ -52,8 +52,8 @@ export default function Profile() {
 
   return (
     <main>
-      <div className="bg-div-home">
-        <div className="main-home-div">
+      <div className="bg-div-profile">
+        <div className="main-profile-div">
           {!spotifyToken && (
             <div className="login-spotify-div">
               <button className="login-spotify-button" onClick={handleLogin}>

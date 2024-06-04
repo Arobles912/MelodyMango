@@ -16,6 +16,7 @@ import FriendRequests from "./pages/FriendRequests";
 import {
   spotifyApiInstance as spotifyApi,
 } from "./utils/spotify_utils";
+import Settings from "./pages/Settings";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -37,7 +38,7 @@ function App() {
         />
         <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} setUsername={setUsername} username={username}/>} />
         <Route path="/register" element={<Register setUsername={setUsername}  username={username}/>} />
-        
+        <Route path="/settings" element={<Settings/>}/>
         <Route element={<PrivateLayout
                           username={username}
                           setUsername={setUsername}  
