@@ -1,3 +1,6 @@
+export const spotifyUserImage = localStorage.getItem("spotifyUserImage");
+import placeHolderImage from "C:/Users/Angel/Desktop/Instituto/MelodyMango/src/assets/icon_images/user-icon.png";
+
 export async function fetchUserId(username) {
     try {
       const response = await fetch(
@@ -22,7 +25,6 @@ export async function fetchUserId(username) {
     }
   }
 
-
   export async function fetchSpotifyDataByUserId(userId) {
     try {
       const response = await fetch(
@@ -36,6 +38,11 @@ export async function fetchUserId(username) {
       );
       if (response.ok) {
         const data = await response.json();
+        if (data.length > 0 && data[0].spotifyImage) {
+          localStorage.setItem("spotifyUserImage", data[0].spotifyImage);
+        } else {
+          localStorage.setItem("spotifyUserImage", placeHolderImage);
+        }
         return data[0].dataId;
       } else {
         console.error("Failed to fetch data ID:", response.statusText);
@@ -46,4 +53,57 @@ export async function fetchUserId(username) {
       return null;
     }
   }
-  
+
+  export async function fetchSpotifyLoggedDataByUserId(userId) {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}/spotify-data/user/${userId}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      if (response.ok) {
+        const data = await response.json();
+        if (data.length > 0 && data[0].spotifyImage) {
+          localStorage.setItem("spotifyLoggedUserImage", data[0].spotifyImage);
+        } else {
+          localStorage.setItem("spotifyLoggedUserImage", placeHolderImage);
+        }
+        return data[0].dataId;
+      } else {
+        console.error("Failed to fetch data ID:", response.statusText);
+        return null;
+      }
+    } catch (error) {
+      console.error("Error fetching data ID:", error);
+      return null;
+    }
+  }
+
+
+  export async function fetchSpotifyImageByUserId(userId) {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}/spotify-data/user/${userId}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      if (response.ok) {
+        const data = await response.json();
+        return data[0].spotifyImage;
+      } else {
+        console.error("Failed to fetch data ID:", response.statusText);
+        return null;
+      }
+    } catch (error) {
+      console.error("Error fetching data ID:", error);
+      return null;
+    }
+  }

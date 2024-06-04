@@ -1,7 +1,7 @@
 .bg-div-home {
   overflow-y: auto;
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   overflow-x: hidden;
   top: 0;
   left: 0;
@@ -20,7 +20,7 @@
 
 .entry-home-div-container h1 {
   font-family: "Kalam", cursive;
-  font-size: 70px;
+  font-size: 60px;
   font-weight: 600;
   color: #f37804;
   text-shadow: 4px 4px 4px black;
@@ -48,7 +48,7 @@
 .entry-home-content-phrase{
   color: rgb(233, 242, 248);
   font-weight: 600;
-  font-size: 50px;
+  font-size: 40px;
   text-shadow: 3px 3px 3px black;
   font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
     "Segoe UI Emoji", Segoe UI Symbol, "Noto Color Emoji";
@@ -64,6 +64,14 @@
   font-size: 50px;
   font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
     "Segoe UI Emoji", Segoe UI Symbol, "Noto Color Emoji";
+}
+
+.entry-home-content-link:hover{
+  background: linear-gradient(to right, #f35804 0%, #f33404 50%, #f30404 100%);
+  cursor: pointer;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .login-spotify-div {

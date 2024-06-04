@@ -5,7 +5,7 @@
   overflow-x: hidden;
   top: 0;
   left: 0;
-  background-color: #0e1528;
+  background-color: #090d19;
   position: relative;
   color: rgb(233, 242, 248);
 }
@@ -17,7 +17,7 @@
 .settings-top-div-container {
   font-family: "Fira-code", sans-serif;
   display: flex;
-  background-color: #162246;
+  background-color: #0b1b34;
 }
 
 .settings-top-div {
@@ -68,7 +68,7 @@
 }
 
 aside {
-  background-color: #162246;
+  background-color: #0b1b34;
   display: flex;
   flex-direction: column;
   width: 15%;

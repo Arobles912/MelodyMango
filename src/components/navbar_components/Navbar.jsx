@@ -4,14 +4,17 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUsers, faGear } from '@fortawesome/free-solid-svg-icons';
 import SearchBar from "./SearchBar";
 import "./styles/Navbar.css";
+import { spotifyUserImage } from "../../utils/api_calls";
 import logo from '../../assets/logos/melodymango-logo-removebg.png';
-import userIcon from '../../assets/icon_images/user-icon.png';
+
 
 export default function Navbar({ setIsLoggedIn, setToken, spotifyApi }) {
   const [username, setUsername] = useState(localStorage.getItem("username"));
   const navigate = useNavigate();
   const [menuVisible, setMenuVisible] = useState(false);
   const dropdownRef = useRef(null);
+
+
 
   const handleLogout = () => {
     const confirmed = window.confirm("Are you sure you want to logout?");
@@ -22,7 +25,8 @@ export default function Navbar({ setIsLoggedIn, setToken, spotifyApi }) {
       localStorage.removeItem("username");
       localStorage.removeItem("spotifyToken");
       localStorage.removeItem("spotifyRefreshToken");
-      spotifyApi.setAccessToken(null);
+      localStorage.removeItem("spotifyUserImage");
+      localStorage.removeItem("spotifyLoggedUserImage");
       setIsLoggedIn(false);
       navigate("/");
       const width = 700;
@@ -91,7 +95,7 @@ export default function Navbar({ setIsLoggedIn, setToken, spotifyApi }) {
       <div className="right-side-div">
         <img
           className="user-icon-img"
-          src={userIcon}
+          src={spotifyUserImage}
           alt="user-icon"
           onClick={toggleMenu}
           ref={dropdownRef}
@@ -104,7 +108,7 @@ export default function Navbar({ setIsLoggedIn, setToken, spotifyApi }) {
             className={menuVisible ? "dropdown-content show" : "dropdown-content"}
           >
             <div>
-              <img src={userIcon} alt="user-icon"></img>
+              <img src={spotifyUserImage} alt="user-icon"></img>
               <span>{username}</span>
             </div>
             <hr />

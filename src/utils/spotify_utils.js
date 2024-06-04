@@ -65,7 +65,7 @@ export const saveSpotifyTokenToDatabase = async (username, accessToken, refreshT
   }
 };
 
-export const saveSpotifyProfileToDatabase = async (username, spotifyUsername, spotifyEmail) => {
+export const saveSpotifyProfileToDatabase = async (username, spotifyUsername, spotifyEmail, spotifyImage) => {
   try {
     const userId = await fetchUserId(username);
     const dataId = await fetchSpotifyDataByUserId(userId);
@@ -82,6 +82,7 @@ export const saveSpotifyProfileToDatabase = async (username, spotifyUsername, sp
           body: JSON.stringify({
             spotifyUsername: spotifyUsername,
             spotifyEmail: spotifyEmail,
+            spotifyImage: spotifyImage,
             userId: userId
           }),
         }
@@ -102,12 +103,17 @@ export const fetchSpotifyUserProfile = async (accessToken) => {
   spotifyApi.setAccessToken(accessToken);
   try {
     const data = await spotifyApi.getMe();
-    return { username: data.id, email: data.email };
+    let image = null;
+    if (data.images && data.images.length > 1 && data.images[1].url) {
+      image = data.images[1].url;
+    }
+    return { username: data.id, email: data.email, image: image };
   } catch (error) {
     console.error("Error fetching Spotify user profile:", error);
     return null;
   }
 };
+
 
 export const refreshSpotifyToken = async (username, refreshToken, setSpotifyToken, setRefreshToken) => {
   try {
@@ -137,6 +143,7 @@ export const refreshSpotifyToken = async (username, refreshToken, setSpotifyToke
     const userProfile = await fetchSpotifyUserProfile(access_token);
     const spotifyUsername = userProfile?.username;
     const spotifyEmail = userProfile?.email;
+    const spotifyImage = userProfile?.image;
 
     if (newRefreshToken) {
       setRefreshToken(newRefreshToken);
@@ -147,7 +154,7 @@ export const refreshSpotifyToken = async (username, refreshToken, setSpotifyToke
     }
 
     if (spotifyUsername && spotifyEmail) {
-      await saveSpotifyProfileToDatabase(username, spotifyUsername, spotifyEmail);
+      await saveSpotifyProfileToDatabase(username, spotifyUsername, spotifyEmail, spotifyImage);
     }
 
     console.log("Spotify token refreshed:", access_token);
@@ -194,7 +201,7 @@ export const getTokensFromUrl = async (username, setSpotifyToken, setRefreshToke
 
       const userProfile = await fetchSpotifyUserProfile(access_token);
       if (userProfile && userProfile.username && userProfile.email) {
-        await saveSpotifyProfileToDatabase(username, userProfile.username, userProfile.email);
+        await saveSpotifyProfileToDatabase(username, userProfile.username, userProfile.email, userProfile.image);
       } else {
         console.error("Failed to fetch Spotify user profile.");
       }
