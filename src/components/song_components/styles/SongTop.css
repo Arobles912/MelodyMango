@@ -47,7 +47,7 @@
 
 .song-info-div {
   color: rgb(233, 242, 248);
-  margin: 30px 15px 25px 0;
+  margin: 25px 15px 0 0;
   display: flex;
   height: auto;
   flex-direction: column;
@@ -55,11 +55,12 @@
 }
 
 .song-info-artists-div {
-  padding: 0 0 15px 0;
+  padding: 10px 5px 15px 5px;
   width: 100%;
   display: flex;
   flex-direction: row;
   border-bottom: 1px solid #f37804;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.075) 0%, rgba(0, 0, 0, 0.15) 50%, rgba(0, 0, 0, 0.30) 100%);
 }
 
 .song-info-artists-div p {
@@ -67,6 +68,11 @@
   margin-bottom: auto;
   font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
     "Segoe UI Emoji", Segoe UI Symbol, "Noto Color Emoji";
+}
+
+.info-section-artist{
+  display: flex;
+  justify-content: left;
 }
 
 .info-section-name {
@@ -80,15 +86,16 @@
   color: #f37804;
   font-weight: 500;
   font-size: 22px;
-  margin: 10px 5px;
+  margin: 9px 5px;
 }
 
 .song-info-albums-div {
-  padding: 15px 0;
+  padding: 15px 5px 25px 5px;
   width: 100%;
   display: flex;
   flex-direction: row;
   border-bottom: 1px solid #f37804;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.075) 0%, rgba(0, 0, 0, 0.15) 50%, rgba(0, 0, 0, 0.30) 100%);
 }
 
 .song-info-albums-div p {
@@ -99,11 +106,12 @@
 }
 
 .song-info-duration-div {
-  padding: 15px 0;
+  padding: 15px 5px;
   width: 100%;
   display: flex;
   flex-direction: row;
   border-bottom: 1px solid #f37804;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.075) 0%, rgba(0, 0, 0, 0.15) 50%, rgba(0, 0, 0, 0.30) 100%);
 }
 
 .song-info-duration-div p {
@@ -116,11 +124,12 @@
 
 
 .song-info-date-div {
-    padding: 15px 0;
+    padding: 15px 5px;
     width: 100%;
     display: flex;
     flex-direction: row;
     border-bottom: 1px solid #f37804;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.075) 0%, rgba(0, 0, 0, 0.15) 50%, rgba(0, 0, 0, 0.30) 100%);
   }
   
   .song-info-date-div p {

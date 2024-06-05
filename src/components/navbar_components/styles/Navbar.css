@@ -109,6 +109,7 @@ nav {
   margin-right: 10px;
   border-radius: 50px;
   background-color: rgb(233, 242, 248);
+  box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.5);
 }
 
 .user-icon-img:hover {
@@ -193,6 +194,7 @@ nav {
   margin-right: 10px;
   border-radius: 50px;
   background-color: rgb(233, 242, 248);
+  box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.5);
 }
 
 .dropdown-content hr{

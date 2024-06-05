@@ -68,7 +68,7 @@ export default function SearchResults({ spotifyApi }) {
             <h3>Tracks</h3>
             {searchTracks.length > 0 ? (
               searchTracks.map((track) => (
-                <div key={track.id} className="result-item">
+                <Link to={`/song/${track.id}`} key={track.id} className="result-item">
                   <img src={track.album.images[0]?.url} alt={track.name} />
                   <div className="result-info-track">
                     <p className="result-title">{track.name}</p>
@@ -76,7 +76,7 @@ export default function SearchResults({ spotifyApi }) {
                       {track.artists.map((artist) => artist.name).join(", ")}
                     </p>
                   </div>
-                </div>
+                </Link>
               ))
             ) : (
               <p>No tracks found</p>

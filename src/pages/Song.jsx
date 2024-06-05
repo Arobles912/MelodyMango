@@ -1,18 +1,111 @@
-import SongAnalysis from "../components/song_components/SongAnalysis";
-import SongGenres from "../components/song_components/SongGenres";
-import SongListeners from "../components/song_components/SongListeners";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import SongTop from "../components/song_components/SongTop";
+import SongGenres from "../components/song_components/SongGenres";
+import SongAnalysis from "../components/song_components/SongAnalysis";
+import SongListeners from "../components/song_components/SongListeners";
+import { getTokensFromUrl, fetchSpotifyTokenFromDatabase, refreshSpotifyToken } from "../utils/spotify_utils";
 import "./styles/Song.css";
 
 export default function Song() {
+  const { songId } = useParams();
+  const username = localStorage.getItem("username");
+  const [spotifyToken, setSpotifyToken] = useState("");
+  const [refreshToken, setRefreshToken] = useState("");
+  const [tokensLoaded, setTokensLoaded] = useState(false);
+  const [songInfo, setSongInfo] = useState(null);
+  const [songGenres, setSongGenres] = useState([]);
+
+  useEffect(() => {
+    const fetchTokens = async () => {
+      await getTokensFromUrl(username, setSpotifyToken, setRefreshToken);
+      await fetchSpotifyTokenFromDatabase(username, setSpotifyToken, setRefreshToken);
+      setTokensLoaded(true);
+    };
+
+    fetchTokens();
+  }, [username]);
+
+  useEffect(() => {
+    const fetchSongInfo = async () => {
+      try {
+        if (tokensLoaded && songId && spotifyToken) {
+          const response = await fetch(`https://api.spotify.com/v1/tracks/${songId}`, {
+            headers: {
+              Authorization: `Bearer ${spotifyToken}`,
+            },
+          });
+          if (response.ok) {
+            const data = await response.json();
+            setSongInfo(data);
+            fetchArtistGenres(data.artists);
+          } else {
+            console.error("Failed to fetch song info:", response.statusText);
+          }
+        }
+      } catch (error) {
+        console.error("Error fetching song info:", error);
+      }
+    };
+    fetchSongInfo();
+  }, [songId, spotifyToken, refreshToken, username, tokensLoaded]);
+
+  const fetchArtistGenres = async (artists) => {
+    let uniqueGenres = [];
+    for (const artist of artists) {
+      try {
+        const response = await fetch(`https://api.spotify.com/v1/artists/${artist.id}`, {
+          headers: {
+            Authorization: `Bearer ${spotifyToken}`,
+          },
+        });
+        if (response.ok) {
+          const artistData = await response.json();
+          uniqueGenres = [...new Set([...uniqueGenres, ...artistData.genres])];
+        } else {
+          console.error("Failed to fetch artist info:", response.statusText);
+        }
+      } catch (error) {
+        console.error("Error fetching artist info:", error);
+      }
+    }
+    setSongGenres(uniqueGenres);
+  };
+
   return (
     <div className="bg-div-song">
-      <div className="main-song-div">
-        <SongTop />
-        <SongGenres/>
-        <SongAnalysis/>
-        <SongListeners/>
-      </div>
+      {songInfo && (
+        <div className="main-song-div">
+          <SongTop songInfo={songInfo}/>
+          <SongGenres songGenres={songGenres}/>
+          <SongAnalysis songInfo={songInfo}/>
+          <SongListeners songInfo={songInfo}/>
+        </div>
+      )}
     </div>
   );
 }
+
+
+// useEffect(() => {
+//   const fetchSongFeatures = async () => {
+//     try {
+//       if (tokensLoaded && songId && spotifyToken) {
+//         const response = await fetch(`https://api.spotify.com/v1/audio-features/${songId}`, {
+//           headers: {
+//             Authorization: `Bearer ${spotifyToken}`,
+//           },
+//         });
+//         if (response.ok) {
+//           const data = await response.json();
+//           setSongFeatures(data);
+//         } else {
+//           console.error("Failed to fetch song features:", response.statusText);
+//         }
+//       }
+//     } catch (error) {
+//       console.error("Error fetching song features:", error);
+//     }
+//   };
+//   fetchSongFeatures();
+// }, [songId, spotifyToken, refreshToken, username, tokensLoaded]);

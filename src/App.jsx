@@ -66,7 +66,7 @@ function App() {
           <Route path="/friends" element={<Friends />} />
           <Route path="/home" element={<Home />} />
           <Route path="/profile/:username" element={<Profile />} />
-          <Route path="/song/:songid" element={<Song />} />
+          <Route path="/song/:songId" element={<Song spotifyApi={spotifyApi}/>} />
           <Route
             path="/search"
             element={<SearchResults spotifyApi={spotifyApi} />}
