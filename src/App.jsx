@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -13,15 +13,18 @@ import PrivateLayout from "./PrivateLayout";
 import Home from "./pages/Home";
 import Friends from "./pages/Friends";
 import FriendRequests from "./pages/FriendRequests";
-import {
-  spotifyApiInstance as spotifyApi,
-} from "./utils/spotify_utils";
+import { spotifyApiInstance as spotifyApi } from "./utils/spotify_utils";
 import Settings from "./pages/Settings";
+import Song from "./pages/Song";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [username, setUsername] = useState(localStorage.getItem("username") || "");
-  const [spotifyToken, setSpotifyToken] = useState(localStorage.getItem("spotifyToken") || "");
+  const [username, setUsername] = useState(
+    localStorage.getItem("username") || ""
+  );
+  const [spotifyToken, setSpotifyToken] = useState(
+    localStorage.getItem("spotifyToken") || ""
+  );
 
   return (
     <Router>
@@ -30,28 +33,45 @@ function App() {
           path="/"
           element={
             isLoggedIn ? (
-              <Navigate to={`/profile/${username}`} replace />
+              <Navigate to={`/home`} replace />
             ) : (
               <Navigate to="/login" replace />
             )
           }
         />
-        <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} setUsername={setUsername} username={username}/>} />
-        <Route path="/register" element={<Register setUsername={setUsername}  username={username}/>} />
-        <Route path="/settings" element={<Settings/>}/>
-        <Route element={<PrivateLayout
-                          username={username}
-                          setUsername={setUsername}  
-                          setIsLoggedIn={setIsLoggedIn} 
-                          setToken={setSpotifyToken} 
-                          spotifyApi={spotifyApi} />} >
-          <Route path="/friend-requests" element={<FriendRequests />} />    
-          <Route path="/friends" element={<Friends />} />                 
+        <Route
+          path="/login"
+          element={
+            <Login
+              setIsLoggedIn={setIsLoggedIn}
+              setUsername={setUsername}
+              username={username}
+            />
+          }
+        />
+        <Route
+          path="/register"
+          element={<Register setUsername={setUsername} username={username} />}
+        />
+        <Route path="/settings" element={<Settings />} />
+        <Route
+          element={
+            <PrivateLayout
+              setIsLoggedIn={setIsLoggedIn}
+              setToken={setSpotifyToken}
+            />
+          }
+        >
+          <Route path="/friend-requests" element={<FriendRequests />} />
+          <Route path="/friends" element={<Friends />} />
           <Route path="/home" element={<Home />} />
           <Route path="/profile/:username" element={<Profile />} />
-          <Route path="/search" element={<SearchResults spotifyApi={spotifyApi} />} />
+          <Route path="/song/:songid" element={<Song />} />
+          <Route
+            path="/search"
+            element={<SearchResults spotifyApi={spotifyApi} />}
+          />
         </Route>
-        
       </Routes>
     </Router>
   );

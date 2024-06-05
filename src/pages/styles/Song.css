@@ -1,0 +1,28 @@
+.bg-div-song {
+  overflow-y: auto;
+  width: 100vw;
+  height: 100%;
+  overflow-x: hidden;
+  top: 0;
+  left: 0;
+  background-color: #090d19;
+  position: relative;
+}
+
+.main-song-div {
+  width: 100%;
+}
+
+.song-genres-div{
+    color: rgb(233, 242, 248);
+    box-sizing: border-box;
+    width: auto;
+    background-color: #0b1b34;
+    margin: 30px 40px;
+}
+
+.genres-title{
+    padding: 20px;
+    font-family: "Fira-code", sans-serif;
+    margin-bottom: 0;
+}

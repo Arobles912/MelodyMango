@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./styles/Login.css";
 import Header from "../components/login_components/Header.jsx";
-import Footer from "../components/login_components/Footer.jsx";
 
 export default function Login({ setIsLoggedIn, setUsername }) {
   const [username, setLocalUsername] = useState("");
@@ -101,7 +100,6 @@ export default function Login({ setIsLoggedIn, setUsername }) {
           </p>
         </form>
       </div>
-      <Footer />
     </div>
   );
 }

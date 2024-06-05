@@ -38,7 +38,6 @@
 }
 
 
-
 input[type="text"]:focus {
   outline: 2px solid black;
   border: 1px solid transparent;

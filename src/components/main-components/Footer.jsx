@@ -4,7 +4,7 @@ export default function Footer(){
     return(
         <footer>
             <h2>
-                @2024 Mango. Corp
+                @2024 Ángel Robles
             </h2>
             <div className="footer-links">
             <a href="/">Policy privacy</a>

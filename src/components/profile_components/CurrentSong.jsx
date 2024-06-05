@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import "./styles/CurrentSong.css"
+import "./styles/CurrentSong.css";
 import noSong from '../../assets/logos/melodymango-logo.jpeg';
 
 export default function CurrentSong({ spotifyToken, spotifyApi }) {
@@ -7,6 +7,7 @@ export default function CurrentSong({ spotifyToken, spotifyApi }) {
     name: "",
     artist: "",
     albumImage: "",
+    isPlaying: false,
   });
 
   const nameRef = useRef(null);
@@ -51,12 +52,14 @@ export default function CurrentSong({ spotifyToken, spotifyApi }) {
           name: response.item.name,
           artist: response.item.artists[0].name,
           albumImage: response.item.album.images[0].url,
+          isPlaying: true,
         });
       } else {
         setCurrentSong({
           name: "No song currently playing.",
           artist: "",
           albumImage: noSong,
+          isPlaying: false,
         });
       }
     })
@@ -64,29 +67,28 @@ export default function CurrentSong({ spotifyToken, spotifyApi }) {
 
   return (
     <div className="container-song-div">
-    <div className="main-song-div">
-      <div className="img-div">
-        {currentSong.albumImage && (
-          <img src={currentSong.albumImage} alt="Album Cover" />
-        )}
+      <div className="main-current-song-div">
+        <div className="img-div">
+          {currentSong.albumImage && (
+            <img src={currentSong.albumImage} alt="Album Cover" />
+          )}
+        </div>
+        <div
+          className="info-background"
+          style={{
+            backgroundImage: `url(${currentSong.albumImage})`,
+          }}
+        />
+        <div className="info-div">
+          <p ref={nameRef} className="name-p">
+            {currentSong.name}
+          </p>
+          <p ref={artistRef} className="artist-p">
+            {currentSong.artist}
+          </p>
+        </div>
+        <div className={`loader ${currentSong.isPlaying ? '' : 'paused'}`}></div>
       </div>
-      <div
-        className="info-background"
-        style={{
-          backgroundImage: `url(${currentSong.albumImage})`,
-        }}
-      />
-      <div className="info-div">
-        <p ref={nameRef} className="name-p">
-          {currentSong.name}
-        </p>
-        <p ref={artistRef} className="artist-p">
-          {currentSong.artist}
-        </p>
-      </div>
-      <div className="loader"></div>
-    </div>
     </div>
   );
 }
-

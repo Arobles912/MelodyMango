@@ -1,32 +1,32 @@
+@import url("https://fonts.googleapis.com/css2?family=Anek+Gurmukhi:wght@100..800&family=Fira+Code:wght@300..700&family=Orbitron:wght@400..900&display=swap");
 
 footer {
   width: 100%;
   display: flex;
   justify-content: center;
   padding: 10px 0;
-  position: fixed;
+  position: relative;
   bottom: 0;
-  border-top: 3px solid #f37804;
   background: linear-gradient(to bottom, #131a2c 0%, #091124 100%);
+  border-top: 2px solid #f37804;
 }
 
 footer h2 {
   color: white;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  margin-right: 80px;
-  margin-left: 80px;
+  font-family: "Fira-code", sans-serif;
 }
 
 .footer-links {
   display: flex;
   align-items: center;
-  margin-top: 5px;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
 .footer-links a {
   font-size: 1.2rem;
   font-weight: 600;
-  font-family: "Anek Gurmukhi", sans-serif;
+  font-family: "Poppins", sans-serif;
   color: white;
   text-decoration: none;
   margin: 10px;

@@ -1,0 +1,141 @@
+.song-top-div-container {
+  margin-right: 40px;
+  margin-left: 40px;
+  background-color: #0b1b34;
+  width: calc(100% - 80px);
+  margin-top: 40px;
+}
+
+.song-top-div-container h1{
+    text-align: center;
+    color: rgb(233, 242, 248);
+    font-family: "Fira-code", sans-serif;
+    padding-top: 20px;
+    margin-bottom: 10px;
+    font-size: 35px;
+}
+
+.song-top-div {
+  display: flex;
+}
+
+.song-img-div {
+  color: rgb(233, 242, 248);
+  margin: 30px;
+  width: 315px;
+}
+
+.song-img-div img {
+  width: 315px;
+  height: 315px;
+  box-shadow: 0px 0px 8px 8px rgba(0, 0, 0, 0.5);
+}
+
+.song-img-div p {
+  text-align: center;
+  color: #f37804;
+  font-family: "Fira-code", sans-serif;
+  font-size: 26px;
+  display: -webkit-box;
+  font-weight: 600;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+}
+
+.song-info-div {
+  color: rgb(233, 242, 248);
+  margin: 30px 15px 25px 0;
+  display: flex;
+  height: auto;
+  flex-direction: column;
+  width: 100%;
+}
+
+.song-info-artists-div {
+  padding: 0 0 15px 0;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1px solid #f37804;
+}
+
+.song-info-artists-div p {
+  text-align: center;
+  margin-bottom: auto;
+  font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", Segoe UI Symbol, "Noto Color Emoji";
+}
+
+.info-section-name {
+  margin: 10px 20px;
+  color: rgb(233, 242, 248);
+  font-weight: 600;
+  font-size: 21px;
+}
+
+.info-section-title {
+  color: #f37804;
+  font-weight: 500;
+  font-size: 22px;
+  margin: 10px 5px;
+}
+
+.song-info-albums-div {
+  padding: 15px 0;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1px solid #f37804;
+}
+
+.song-info-albums-div p {
+  text-align: center;
+  margin-bottom: auto;
+  font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", Segoe UI Symbol, "Noto Color Emoji";
+}
+
+.song-info-duration-div {
+  padding: 15px 0;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1px solid #f37804;
+}
+
+.song-info-duration-div p {
+  text-align: center;
+  margin-bottom: auto;
+  font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", Segoe UI Symbol, "Noto Color Emoji";
+  margin-bottom: 10px;
+}
+
+
+.song-info-date-div {
+    padding: 15px 0;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid #f37804;
+  }
+  
+  .song-info-date-div p {
+    text-align: center;
+    margin-bottom: auto;
+    font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+      "Segoe UI Emoji", Segoe UI Symbol, "Noto Color Emoji";
+    margin-bottom: 10px;
+  }
+
+  .separation-div-info {
+    border-radius: 3px;
+    border: 1px solid black;
+    margin: auto 0px;
+    height: 45px;
+    width: 4px;
+    background-color: #f37804;
+  }

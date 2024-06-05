@@ -8,7 +8,7 @@ import { spotifyUserImage } from "../../utils/api_calls";
 import logo from '../../assets/logos/melodymango-logo-removebg.png';
 
 
-export default function Navbar({ setIsLoggedIn, setToken, spotifyApi }) {
+export default function Navbar({ setIsLoggedIn, setToken}) {
   const [username, setUsername] = useState(localStorage.getItem("username"));
   const navigate = useNavigate();
   const [menuVisible, setMenuVisible] = useState(false);
@@ -71,10 +71,6 @@ export default function Navbar({ setIsLoggedIn, setToken, spotifyApi }) {
         <div className="separation-div"></div>
         <Link className="nav-link" to={`/profile/${username}`}>
           Profile
-        </Link>
-        <div className="separation-div"></div>
-        <Link className="nav-link" to="/browse">
-          Browse
         </Link>
         <div className="separation-div"></div>
         <Link className="nav-link" to="/top">
