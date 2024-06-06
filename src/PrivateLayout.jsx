@@ -2,7 +2,7 @@
 import React from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import Navbar from "./components/navbar_components/Navbar";
-import Footer from "./components/main-components/Footer";
+import Footer from "./components/main_components/Footer";
 
 function PrivateLayout({ setIsLoggedIn, setToken }) {
   const location = useLocation();

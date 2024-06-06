@@ -1,0 +1,15 @@
+.bg-div-artist {
+    overflow-y: auto;
+    width: 100vw;
+    min-height: calc(100vh - 200px);
+    overflow-x: hidden;
+    top: 0;
+    left: 0;
+    background-color: #090d19;
+    position: relative;
+  }
+  
+  .main-artist-div {
+    width: 100%;
+  }
+  

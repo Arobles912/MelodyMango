@@ -1,7 +1,7 @@
 import "./styles/Settings.css";
 import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGear, faUser, faLock, faBars } from "@fortawesome/free-solid-svg-icons";
+import { faGear, faUser, faLock, faBars, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { optionData } from "../utils/options";
 import { useNavigate } from "react-router-dom";
 
@@ -24,7 +24,7 @@ export default function Settings() {
       <div className="main-settings-div">
         <div className="settings-top-div-container">
           <div className="return-top-div">
-            <button type="button" onClick={handleReturnButton}> {"<--"}</button>
+            <button type="button" onClick={handleReturnButton}> <FontAwesomeIcon icon={faArrowLeft} className="arrow-icon" /></button>
             <h4>{selectedLink}</h4>
           </div>
           <div className="settings-top-div">

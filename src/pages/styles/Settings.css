@@ -103,6 +103,13 @@ aside {
     margin-right: 10px;
 }
 
+.arrow-icon{
+  color: rgb(233, 242, 248);
+  width: 25px;
+  height: 25px;
+  margin: auto;
+}
+
 aside span {
   margin: auto 0;
   text-decoration: none;

@@ -12,11 +12,13 @@ footer {
 }
 
 footer h2 {
+  margin-right: 50px;
   color: white;
   font-family: "Fira-code", sans-serif;
 }
 
 .footer-links {
+  margin-left: 50px;
   display: flex;
   align-items: center;
   margin-top: auto;

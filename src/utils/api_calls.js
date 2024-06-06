@@ -1,5 +1,6 @@
 export const spotifyUserImage = localStorage.getItem("spotifyUserImage");
-import placeHolderImage from "C:/Users/Angel/Desktop/Instituto/MelodyMango/src/assets/icon_images/user-icon.png";
+//import placeHolderImage from "C:/Users/Angel/Desktop/Instituto/MelodyMango/src/assets/icon_images/user-icon.png";
+import placeHolderImage from "/home/general/MelodyMango/src/assets/icon_images/user-icon.png";
 
 export async function fetchUserId(username) {
     try {

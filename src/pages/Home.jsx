@@ -10,7 +10,8 @@ import {
 import "./styles/Home.css";
 import mainImg from "../assets/bg_images/main-home-image4.jpg";
 import { fetchSpotifyLoggedDataByUserId, fetchUserId } from "../utils/api_calls";
-import placeHolderImage from "../assets/icon_images/user-icon.png"; // Importa el placeholderImage
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 export default function Home() {
   const [username, setUsername] = useState(localStorage.getItem("username"));
@@ -80,14 +81,13 @@ export default function Home() {
     <main>
       <div className="bg-div-home">
         <div className="main-home-div">
-          {!spotifyToken && (
+          {/* {!spotifyToken && (
             <div className="login-spotify-div">
               <button className="login-spotify-button" onClick={handleLogin}>
                 Login with Spotify
               </button>
             </div>
-          )}
-          {spotifyToken && (
+          )} */}
             <div className="entry-home-div-container">
               <h1>Unveil your inside melody.</h1>
               <div className="entry-home-div">
@@ -100,12 +100,11 @@ export default function Home() {
                     className="entry-home-content-link"
                     onClick={handleHomeButton}
                   >
-                    Take me to my profile {"-->"}
+                    Take me to my profile <FontAwesomeIcon icon={faArrowRight} className="arrow-home-icon" />
                   </p>
                 </div>
               </div>
             </div>
-          )}
         </div>
       </div>
     </main>

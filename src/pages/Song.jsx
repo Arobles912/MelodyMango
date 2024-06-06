@@ -74,6 +74,11 @@ export default function Song() {
 
   return (
     <div className="bg-div-song">
+      {!songInfo && (
+        <div className="no-song-div">
+        <h1 className="no-song-h1">No song found.</h1>
+        </div>
+      )}
       {songInfo && (
         <div className="main-song-div">
           <SongTop songInfo={songInfo}/>

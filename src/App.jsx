@@ -16,6 +16,7 @@ import FriendRequests from "./pages/FriendRequests";
 import { spotifyApiInstance as spotifyApi } from "./utils/spotify_utils";
 import Settings from "./pages/Settings";
 import Song from "./pages/Song";
+import Artist from "./pages/Artist";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -66,7 +67,8 @@ function App() {
           <Route path="/friends" element={<Friends />} />
           <Route path="/home" element={<Home />} />
           <Route path="/profile/:username" element={<Profile />} />
-          <Route path="/song/:songId" element={<Song spotifyApi={spotifyApi}/>} />
+          <Route path="/song/:songId" element={<Song/>} />
+          <Route path="/artist/:artistId" element={<Artist/>} />
           <Route
             path="/search"
             element={<SearchResults spotifyApi={spotifyApi} />}

@@ -54,6 +54,14 @@ export default function Profile() {
     <main>
       <div className="bg-div-profile">
         <div className="main-profile-div">
+        {username === "null" && (
+            <div className="login-spotify-div">
+              <button className="login-spotify-button" onClick={handleLogin}>
+                Login with Spotify
+              </button>
+            </div>
+          )}
+          {username !== "null" &&(
             <div>
               <UserInfo username={username} spotifyToken={spotifyToken} spotifyApi={spotifyApi} />
               <div className="time-period-div">
@@ -98,6 +106,8 @@ export default function Profile() {
                 spotifyApi={spotifyApi}
               />
             </div>
+          )}
+            
         </div>
       </div>
     </main>
