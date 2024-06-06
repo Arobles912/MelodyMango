@@ -100,7 +100,7 @@ export default function Home() {
                     className="entry-home-content-link"
                     onClick={handleHomeButton}
                   >
-                    Take me to my profile <FontAwesomeIcon icon={faArrowRight} className="arrow-home-icon" />
+                    Take me to my profile {"-->"}
                   </p>
                 </div>
               </div>

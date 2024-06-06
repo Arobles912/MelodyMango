@@ -30,14 +30,14 @@
   height: 315px;
   box-shadow: 0px 0px 8px 8px rgba(0, 0, 0, 0.5);
   border-radius: 250px;
-  background-color: white;
+  background-color: rgb(233, 242, 248);
 }
 
 .artist-img-div p {
   text-align: center;
   color: #f37804;
-  font-family: "Fira-code", sans-serif;
-  font-size: 26px;
+  font-family: "Poppins", sans-serif;
+  font-size: 24px;
   display: -webkit-box;
   font-weight: 600;
   -webkit-line-clamp: 2;
@@ -72,7 +72,7 @@
     "Segoe UI Emoji", Segoe UI Symbol, "Noto Color Emoji";
 }
 
-.info-section-artist{
+.info-section-artist-div{
   display: flex;
   justify-content: left;
 }

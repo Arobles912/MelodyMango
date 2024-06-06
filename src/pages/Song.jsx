@@ -15,6 +15,8 @@ export default function Song() {
   const [tokensLoaded, setTokensLoaded] = useState(false);
   const [songInfo, setSongInfo] = useState(null);
   const [songGenres, setSongGenres] = useState([]);
+  const [songAnalysis, setSongAnalysis] = useState(null);
+  const [songFeatures, setSongFeatures] = useState(null);
 
   useEffect(() => {
     const fetchTokens = async () => {
@@ -39,6 +41,8 @@ export default function Song() {
             const data = await response.json();
             setSongInfo(data);
             fetchArtistGenres(data.artists);
+            fetchSongAnalysis(data.id);
+            fetchSongFeatures(data.id);
           } else {
             console.error("Failed to fetch song info:", response.statusText);
           }
@@ -47,6 +51,7 @@ export default function Song() {
         console.error("Error fetching song info:", error);
       }
     };
+
     fetchSongInfo();
   }, [songId, spotifyToken, refreshToken, username, tokensLoaded]);
 
@@ -72,45 +77,57 @@ export default function Song() {
     setSongGenres(uniqueGenres);
   };
 
+  const fetchSongAnalysis = async (songId) => {
+    try {
+      const response = await fetch(`https://api.spotify.com/v1/audio-analysis/${songId}`, {
+        headers: {
+          Authorization: `Bearer ${spotifyToken}`,
+        },
+      });
+      if (response.ok) {
+        const data = await response.json();
+        setSongAnalysis(data);
+      } else {
+        console.error("Failed to fetch song analysis:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Error fetching song analysis:", error);
+    }
+  };
+
+  const fetchSongFeatures = async (songId) => {
+    try {
+      const response = await fetch(`https://api.spotify.com/v1/audio-features/${songId}`, {
+        headers: {
+          Authorization: `Bearer ${spotifyToken}`,
+        },
+      });
+      if (response.ok) {
+        const data = await response.json();
+        setSongFeatures(data);
+      } else {
+        console.error("Failed to fetch song features:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Error fetching song features:", error);
+    }
+  };
+
   return (
     <div className="bg-div-song">
       {!songInfo && (
         <div className="no-song-div">
-        <h1 className="no-song-h1">No song found.</h1>
+          <h1 className="no-song-h1">Loading...</h1>
         </div>
       )}
       {songInfo && (
         <div className="main-song-div">
           <SongTop songInfo={songInfo}/>
           <SongGenres songGenres={songGenres}/>
-          <SongAnalysis songInfo={songInfo}/>
+          <SongAnalysis songAnalysis={songAnalysis} songFeatures={songFeatures}/>
           <SongListeners songInfo={songInfo}/>
         </div>
       )}
     </div>
   );
 }
-
-
-// useEffect(() => {
-//   const fetchSongFeatures = async () => {
-//     try {
-//       if (tokensLoaded && songId && spotifyToken) {
-//         const response = await fetch(`https://api.spotify.com/v1/audio-features/${songId}`, {
-//           headers: {
-//             Authorization: `Bearer ${spotifyToken}`,
-//           },
-//         });
-//         if (response.ok) {
-//           const data = await response.json();
-//           setSongFeatures(data);
-//         } else {
-//           console.error("Failed to fetch song features:", response.statusText);
-//         }
-//       }
-//     } catch (error) {
-//       console.error("Error fetching song features:", error);
-//     }
-//   };
-//   fetchSongFeatures();
-// }, [songId, spotifyToken, refreshToken, username, tokensLoaded]);

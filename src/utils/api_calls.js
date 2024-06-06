@@ -1,6 +1,6 @@
 export const spotifyUserImage = localStorage.getItem("spotifyUserImage");
-//import placeHolderImage from "C:/Users/Angel/Desktop/Instituto/MelodyMango/src/assets/icon_images/user-icon.png";
-import placeHolderImage from "/home/general/MelodyMango/src/assets/icon_images/user-icon.png";
+import placeHolderImage from "C:/Users/Angel/Desktop/Instituto/MelodyMango/src/assets/icon_images/user-icon.png";
+//import placeHolderImage from "/home/general/MelodyMango/src/assets/icon_images/user-icon.png";
 
 export async function fetchUserId(username) {
     try {
@@ -42,7 +42,7 @@ export async function fetchUserId(username) {
         if (data.length > 0 && data[0].spotifyImage) {
           localStorage.setItem("spotifyUserImage", data[0].spotifyImage);
         } else {
-          localStorage.setItem("spotifyUserImage", placeHolderImage);
+          console.error("Error fetching the user image");
         }
         return data[0].dataId;
       } else {

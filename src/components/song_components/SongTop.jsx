@@ -1,7 +1,15 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./styles/SongTop.css";
 
 export default function SongTop({ songInfo }) {
+
+  function convertMsToMinutesAndSeconds(durationInMs) {
+    const minutes = Math.floor(durationInMs / 60000);
+    const seconds = ((durationInMs % 60000) / 1000).toFixed(0);
+    return `${minutes}:${(seconds < 10 ? "0" : "")}${seconds}`;
+  }
+  
   
   return (
     <div className="song-top-div-container">
@@ -16,7 +24,7 @@ export default function SongTop({ songInfo }) {
             <p className="info-section-title">Artists:</p>
             {songInfo.artists.map((artist, index) => (
               <div key={artist.id} className="info-section-artist">
-                <p className="info-section-name">{artist.name}</p>
+                <Link to={`/artist/${artist.id}`} className="info-section-name-link">{artist.name}</Link>
                 {index !== songInfo.artists.length - 1 && <div className="separation-div-info"></div>}
               </div>
             ))}
@@ -37,10 +45,4 @@ export default function SongTop({ songInfo }) {
       </div>
     </div>
   );
-}
-
-function convertMsToMinutesAndSeconds(durationInMs) {
-  const minutes = Math.floor(durationInMs / 60000);
-  const seconds = ((durationInMs % 60000) / 1000).toFixed(0);
-  return `${minutes}:${(seconds < 10 ? "0" : "")}${seconds}`;
 }

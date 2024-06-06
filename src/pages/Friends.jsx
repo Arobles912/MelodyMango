@@ -56,14 +56,14 @@ export default function Friends() {
     }
   }
 
-  async function fetchCurrentSong(token) {
+  async function fetchCurrentSong(spotifyToken) {
     try {
       const response = await fetch(
         "https://api.spotify.com/v1/me/player/currently-playing",
         {
           method: "GET",
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${spotifyToken}`,
           },
         }
       );
@@ -109,6 +109,31 @@ export default function Friends() {
     }
   }
 
+  async function fetchSpotifyTokenByUserId(userId) {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}/spotify-data/user/${userId}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      if (response.ok) {
+        const data = await response.json();
+        return data[0].spotifyToken;
+      } else {
+        console.error("Failed to fetch token:", response.statusText);
+        return null;
+      }
+    } catch (error) {
+      console.error("Error fetching token:", error);
+      return null;
+    }
+  }
+
+
   const handleDeleteFriend = (friendshipId) => {
     const confirmed = window.confirm(
       "Are you sure you want to delete this friend?"
@@ -141,8 +166,10 @@ export default function Friends() {
             friendship.user1.userId === storedUsernameId
               ? friendship.user2
               : friendship.user1;
+          
           if (friend.userId !== storedUsernameId) {
-            const song = await fetchCurrentSong(friend.spotifyToken);
+            const token = await fetchSpotifyTokenByUserId(friend.userId);
+            const song = await fetchCurrentSong(token);
             setFriendSongs((prevState) => ({
               ...prevState,
               [friend.userId]: song,

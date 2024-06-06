@@ -1,49 +1,45 @@
+import React, { useState, useRef, useEffect } from "react";
 import "./styles/ArtistTopTracks.css";
 import CardArrows from "../profile_components/CardArrows";
-import { useState } from "react";
+import { Link } from "react-router-dom";
 
-const tracks = [
-  { name: "Song 1", img: "https://via.placeholder.com/150" },
-  { name: "Song 2", img: "https://via.placeholder.com/150" },
-  { name: "Song 3", img: "https://via.placeholder.com/150" },
-  { name: "Song 4", img: "https://via.placeholder.com/150" },
-  { name: "Song 5", img: "https://via.placeholder.com/150" },
-  { name: "Song 6", img: "https://via.placeholder.com/150" },
-  { name: "Song 7", img: "https://via.placeholder.com/150" },
-  { name: "Song 8", img: "https://via.placeholder.com/150" },
-  { name: "Song 9", img: "https://via.placeholder.com/150" },
-  { name: "Song 10", img: "https://via.placeholder.com/150" },
-  { name: "Song 11", img: "https://via.placeholder.com/150" },
-  { name: "Song 12", img: "https://via.placeholder.com/150" },
-];
+export default function ArtistTopTracks({ topTracks }) {
+  const [currentTopTrackIndex, setCurrentTopTrackIndex] = useState(0);
 
-export default function ArtistTopTracks() {
-  const [currentListenerIndex, setCurrentListenerIndex] = useState(0);
+  const topTracksListRef = useRef(null);
 
-  const renderTracks = () => {
-    const rows = [];
-    for (let i = 0; i < tracks.length; i += 10) {
-      const rowTracks = tracks.slice(i, i + 10);
-      rows.push(
-        <div className="top-tracks-list" key={i}>
-          {rowTracks.map((track, index) => (
-            <div className="top-track-list" key={index}>
-              <img src={track.img} alt={`top-track-${index}`} />
-              <div className="top-track-info">
-                <p className="top-track-title">{track.name}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      );
+  useEffect(() => {
+    if (topTracksListRef.current) {
+      topTracksListRef.current.scrollTo({
+        left: currentTopTrackIndex * topTracksListRef.current.offsetWidth,
+        behavior: "smooth",
+      });
     }
-    return rows;
-  };
+  }, [currentTopTrackIndex]);
 
   return (
     <div className="top-tracks-div">
       <h2>Top tracks</h2>
-      {renderTracks()}
+      <div className="top-tracks-list" ref={topTracksListRef}>
+        {topTracks.length > 0 ? (
+          topTracks.map((track, index) => (
+            <Link to={`/song/${track.id}`} key={track.id} className="top-track-list">
+              <img src={track.album.images[0].url} alt={track.name} />
+              <div className="top-track-info">
+                <p className="top-track-title">{track.name}</p>
+                <p className="top-track-number">{index + 1}</p>
+              </div>
+            </Link>
+          ))
+        ) : (
+          <p>No top tracks information available</p>
+        )}
+      </div>
+      <CardArrows
+        currentIndex={currentTopTrackIndex}
+        setIndex={setCurrentTopTrackIndex}
+        length={topTracks.length}
+      />
     </div>
   );
 }

@@ -27,6 +27,11 @@
     margin-left: 21px;
     margin-right: 20px;
     margin-bottom: 20px;
+    text-decoration: none;
+  }
+
+  .artist-list:hover{
+    background-color: #112a53;
   }
   
   .artist-info {

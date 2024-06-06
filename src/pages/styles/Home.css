@@ -15,7 +15,7 @@
 
 .entry-home-div-container {
   width: 100%;
-  margin: 30px 0;
+  margin: 30px 0 60px 0;
 }
 
 .entry-home-div-container h1 {
@@ -74,12 +74,12 @@
   -webkit-text-fill-color: transparent;
 }
 
-.arrow-home-icon::before{
+/* .arrow-home-icon::before{
   background: -webkit-gradient(to right, #f37704 0%, #f36004 50%, #f33804 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   display: initial;
-}
+} */
 
 .login-spotify-div {
   display: flex;

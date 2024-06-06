@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import CardArrows from "./CardArrows";
 import "./styles/ArtistsCard.css"
+import { Link } from "react-router-dom";
 
 export default function ArtistsCard({ spotifyToken, timeRange, spotifyApi }) {
   const [topArtists, setTopArtists] = useState([]);
@@ -47,7 +48,7 @@ export default function ArtistsCard({ spotifyToken, timeRange, spotifyApi }) {
       </h2>
       <div className="artists-list" ref={artistsListRef}>
         {topArtists.map((artist, index) => (
-          <div key={artist.id} className="artist-list">
+          <Link to={`/artist/${artist.id}`} key={artist.id} className="artist-list">
             <img src={artist.images[0].url} alt={artist.name} />
             <div className="artist-info">
               <p className="artist-title">
@@ -57,7 +58,7 @@ export default function ArtistsCard({ spotifyToken, timeRange, spotifyApi }) {
                   : artist.name}
               </p>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
       <CardArrows

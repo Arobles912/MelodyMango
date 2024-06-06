@@ -1,40 +1,49 @@
 .top-tracks-div {
   color: rgb(233, 242, 248);
   box-sizing: border-box;
-  width: calc(100% - 80px);
+  width: auto;
   background-color: #0b1b34;
   margin: 30px 40px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
 .top-tracks-div h2 {
   padding: 20px;
-  font-family: "Fira Code", sans-serif;
+  font-family: "Fira-code", sans-serif;
   margin-bottom: 0;
-  color: white;
 }
 
 .top-tracks-list {
   display: flex;
-  justify-content: center; 
-  flex-wrap: wrap; 
   padding: 0;
-  margin: 0 0 20px 0;
-  overflow: hidden;
-  width: 100%; 
+  margin: 0;
+  overflow-x: hidden;
 }
 
 .top-track-list {
   display: flex;
+  flex: 0 0 200px;
   flex-direction: column;
   align-items: center;
-  flex: 0 0 7%; 
-  margin: 10px 30px 10px 10px;
+  margin-left: 21px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  text-decoration: none;
+}
+
+.top-track-list:hover{
+  background-color: #112a53;
 }
 
 .top-track-info {
+  font-family: "Poppins", sans-serif;
+  margin-top: 10px;
+  text-align: center;
+  max-height: 150px; 
+  overflow: hidden;
+  text-overflow: ellipsis; 
+}
+
+.top-track-date{
   font-family: "Poppins", sans-serif;
   margin-top: 10px;
   text-align: center;
@@ -46,20 +55,27 @@
 .top-tracks-div img {
   margin-top: 15px;
   box-shadow: 0px 0px 10px 10px rgba(0, 0, 0, 0.5);
-  width: 100%; 
-  height: auto;
+  width: 150px;
+  height: 150px;
+  border-radius: 10px;
 }
 
-.top-track-title {
+.top-track-title{
   color: rgb(233, 242, 248);
   text-align: center;
-  font-size: 18px;
-  max-width: 100%; 
-  margin: 10px 0;
+  font-size: 20px;
+  max-width: 200px;
+  margin-block-end: 0;
+  margin-bottom: 10px;
   font-weight: 500;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.top-track-number{
+  font-size: 18px;
+  color: #f37804;
 }

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, Link } from "react-router-dom";
 import "./styles/SearchResults.css";
+import placeHolderImage from "../assets/icon_images/user-icon.png"
 
 export default function SearchResults({ spotifyApi }) {
   const [searchTracks, setSearchTracks] = useState([]);
@@ -86,7 +87,7 @@ export default function SearchResults({ spotifyApi }) {
             <h3>Artists</h3>
             {searchArtists.length > 0 ? (
               searchArtists.map((artist) => (
-                <div key={artist.id} className="result-item">
+                <Link to={`/artist/${artist.id}`} key={artist.id} className="result-item">
                   {artist.images[0] ? (
                     <img src={artist.images[0].url} alt={artist.name} />
                   ) : (
@@ -99,7 +100,7 @@ export default function SearchResults({ spotifyApi }) {
                   <div className="result-info">
                     <p className="result-title">{artist.name}</p>
                   </div>
-                </div>
+                </Link>
               ))
             ) : (
               <p>No artists found</p>
@@ -113,7 +114,7 @@ export default function SearchResults({ spotifyApi }) {
                   <img
                     src={
                       user.profileImage ||
-                      "src/assets/icon_images/user-icon.png"
+                      placeHolderImage
                     }
                     alt={user.username}
                   />

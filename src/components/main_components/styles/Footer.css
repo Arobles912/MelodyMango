@@ -13,7 +13,7 @@ footer {
 
 footer h2 {
   margin-right: 50px;
-  color: white;
+  color: rgb(233, 242, 248);
   font-family: "Fira-code", sans-serif;
 }
 
@@ -29,7 +29,7 @@ footer h2 {
   font-size: 1.2rem;
   font-weight: 600;
   font-family: "Poppins", sans-serif;
-  color: white;
+  color: rgb(233, 242, 248);
   text-decoration: none;
   margin: 10px;
 }

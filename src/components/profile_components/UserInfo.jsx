@@ -2,7 +2,7 @@ import "./styles/UserInfo.css";
 import CurrentSong from "./CurrentSong";
 import { useEffect, useState } from "react";
 import { fetchSpotifyImageByUserId } from "../../utils/api_calls";
-import placeHolderImage from "../../assets/icon_images/user-icon.png"; // Importa el placeholderImage
+import placeHolderImage from "../../assets/icon_images/user-icon.png";
 
 export default function UserInfo({ username, spotifyApi, spotifyToken }) {
   const storedUsername = localStorage.getItem("username");
@@ -77,13 +77,8 @@ export default function UserInfo({ username, spotifyApi, spotifyToken }) {
       );
 
       if (response.ok) {
-        const responseData = await response.text();
-        if (responseData.trim().length === 0) {
-          setFriendCount(0);
-        } else {
-          const data = await response.json();
-          setFriendCount(data.length);
-        }
+        const responseData = await response.json();
+        setFriendCount(responseData.length);
       } else {
         console.error("Failed to fetch friend count:", response.statusText);
       }
@@ -145,7 +140,7 @@ export default function UserInfo({ username, spotifyApi, spotifyToken }) {
   return (
     <div className="user-info-main-div">
       <div className="user-info-div">
-        <img className="user-info-img" src={spotifyUserImage} alt="User Icon" />
+        <img className="user-info-img" src={spotifyUserImage || placeHolderImage} alt="User Icon" />
         <div className="user-info-p-div">
           <p className="p-username">{username}</p>
           <p>Friends: {friendCount}</p>
