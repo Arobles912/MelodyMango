@@ -111,11 +111,10 @@ export default function Artist() {
         </div>
       )}
         {artistInfo && (
-                <div className="main-artist-div">
+            <div className="main-artist-div">
             <ArtistTop artistInfo={artistInfo} />
             <ArtistTopTracks topTracks={topTracks} />
             <ArtistAlbums artistAlbums={artistAlbums} />
-            <ArtistListeners artistId={artistId} spotifyToken={spotifyToken} />
             </div>
         )}
     </div>

@@ -42,6 +42,9 @@ export default function Login({ setIsLoggedIn, setUsername }) {
         setIsLoggedIn(true);
         setUsername(username);
         navigate(`/home`);
+        setTimeout(() => {
+          window.location.reload();
+        }, 300);
       } else {
         const data = await response.json();
         setError(data.message || "Incorrect username or password");
@@ -71,7 +74,7 @@ export default function Login({ setIsLoggedIn, setUsername }) {
             name="username"
             value={username}
             onChange={(e) => setLocalUsername(e.target.value)}
-            maxLength={30}
+            maxLength={50}
           />
           <br />
           <img
@@ -87,7 +90,7 @@ export default function Login({ setIsLoggedIn, setUsername }) {
             name="password"
             value={password} 
             onChange={(e) => setPassword(e.target.value)} 
-            maxLength={50}
+            maxLength={255}
           />
           <br />
           <input className="submit" type="submit" value="Login" />

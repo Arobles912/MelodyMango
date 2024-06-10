@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, Link } from "react-router-dom";
 import "./styles/SearchResults.css";
-import placeHolderImage from "../assets/icon_images/user-icon.png"
+import placeHolderImage from "../assets/icon_images/user-icon.png";
 
 export default function SearchResults({ spotifyApi }) {
   const [searchTracks, setSearchTracks] = useState([]);
   const [searchArtists, setSearchArtists] = useState([]);
   const [searchUsers, setSearchUsers] = useState([]);
+  const [userImages, setUserImages] = useState({});
   const location = useLocation();
   const query = new URLSearchParams(location.search).get("query");
-  const username = localStorage.getItem("username");
 
   useEffect(() => {
     const fetchSearchResults = async () => {
@@ -45,6 +45,7 @@ export default function SearchResults({ spotifyApi }) {
 
         if (response.ok) {
           setSearchUsers(data);
+          data.forEach(user => fetchSpotifyImageForUser(user.userId));
         } else {
           console.error("Error: Expected a user object");
           setSearchUsers([]);
@@ -59,6 +60,33 @@ export default function SearchResults({ spotifyApi }) {
       fetchUsersFromDatabase();
     }
   }, [query]);
+
+  const fetchSpotifyImageForUser = async (userId) => {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}/spotify-data/user/${userId}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      if (response.ok) {
+        const data = await response.json();
+        if (data.length > 0 && data[0].spotifyImage) {
+          setUserImages(prevImages => ({
+            ...prevImages,
+            [userId]: data[0].spotifyImage
+          }));
+        }
+      } else {
+        console.error("Failed to fetch Spotify image:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Error fetching Spotify image:", error);
+    }
+  };
 
   return (
     <div className="bg-div-search">
@@ -93,7 +121,7 @@ export default function SearchResults({ spotifyApi }) {
                   ) : (
                     <img
                       className="placeholder-artist-img"
-                      src="src/assets/icon_images/user-icon.png"
+                      src={placeHolderImage}
                       alt={artist.name}
                     />
                   )}
@@ -112,10 +140,7 @@ export default function SearchResults({ spotifyApi }) {
               searchUsers.map((user) => (
                 <Link key={user.userId} to={`/profile/${user.username}`} className="result-item">
                   <img
-                    src={
-                      user.profileImage ||
-                      placeHolderImage
-                    }
+                    src={userImages[user.userId] || placeHolderImage}
                     alt={user.username}
                   />
                   <div className="result-info-user">

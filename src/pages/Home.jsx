@@ -9,13 +9,15 @@ import {
 } from "../utils/spotify_utils";
 import "./styles/Home.css";
 import mainImg from "../assets/bg_images/main-home-image4.jpg";
-import { fetchSpotifyLoggedDataByUserId, fetchUserId } from "../utils/api_calls";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import {
+  fetchSpotifyLoggedDataByUserId,
+  fetchUserId,
+} from "../utils/api_calls";
 
 export default function Home() {
   const [username, setUsername] = useState(localStorage.getItem("username"));
   const [userId, setUserId] = useState("");
+  const [userImage, setUserImage] = useState("");
   const [spotifyToken, setSpotifyToken] = useState(
     localStorage.getItem("spotifyToken") || ""
   );
@@ -70,7 +72,10 @@ export default function Home() {
       const user_id = await fetchUserId(username);
       if (user_id) {
         setUserId(user_id);
-        await fetchSpotifyLoggedDataByUserId(user_id);
+        const userData = await fetchSpotifyLoggedDataByUserId(user_id);
+        if (userData && userData.images && userData.images[0]) {
+          setUserImage(userData.images[0].url);
+        }
       }
     }
 
@@ -81,13 +86,14 @@ export default function Home() {
     <main>
       <div className="bg-div-home">
         <div className="main-home-div">
-          {/* {!spotifyToken && (
+          {!spotifyToken && (
             <div className="login-spotify-div">
               <button className="login-spotify-button" onClick={handleLogin}>
                 Login with Spotify
               </button>
             </div>
-          )} */}
+          )}{" "}
+          {spotifyToken && (
             <div className="entry-home-div-container">
               <h1>Unveil your inside melody.</h1>
               <div className="entry-home-div">
@@ -102,9 +108,17 @@ export default function Home() {
                   >
                     Take me to my profile {"-->"}
                   </p>
+                  {userImage && (
+                    <img
+                      src={userImage}
+                      alt="User Profile"
+                      className="user-profile-image"
+                    />
+                  )}
                 </div>
               </div>
             </div>
+          )}
         </div>
       </div>
     </main>

@@ -63,7 +63,7 @@ export default function Register({ username, setUsername }) {
             name="username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            maxLength={30}
+            maxLength={50}
           />
           <br />
           <img
@@ -79,7 +79,7 @@ export default function Register({ username, setUsername }) {
             name="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            maxLength={50}
+            maxLength={255}
           />
           <br />
           <img
@@ -95,7 +95,7 @@ export default function Register({ username, setUsername }) {
             name="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            maxLength={50}
+            maxLength={100}
           />
           <br />
           <div className="checkbox-container">

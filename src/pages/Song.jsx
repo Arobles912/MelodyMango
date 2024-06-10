@@ -125,7 +125,6 @@ export default function Song() {
           <SongTop songInfo={songInfo}/>
           <SongGenres songGenres={songGenres}/>
           <SongAnalysis songAnalysis={songAnalysis} songFeatures={songFeatures}/>
-          <SongListeners songInfo={songInfo}/>
         </div>
       )}
     </div>

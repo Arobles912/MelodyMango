@@ -37,6 +37,38 @@
   background-color: #121a32;
 }
 
+.private-profile-p{
+  color: rgb(233, 242, 248);
+  text-align: center;
+  font-size: 30px;
+  margin-top: 200px;
+  font-weight: 600;
+  font-family: "Fira-code", sans-serif;
+}
+
+.add-friend-div-private{
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+
+.add-friend-button-private{
+  font-size: 20px;
+  padding: 10px 25px;
+  border-radius: 20px;
+  font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", Segoe UI Symbol, "Noto Color Emoji";
+  background: linear-gradient(to right, #f39b04 0%, #f38304 50%, #f36c04 100%);
+  border: none;
+  color: rgb(233, 242, 248);
+  font-weight: bold;
+}
+
+.add-friend-button-private:hover{
+  background: linear-gradient(to right, #f37b04 0%, #f36004 50%, #f34c04 100%);
+  transition: 0.2s;
+}
 
 input[type="text"]:focus {
   outline: 2px solid black;

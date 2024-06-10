@@ -44,7 +44,6 @@ export default function FriendRequests() {
       );
       if (response.ok) {
         const data = await response.json();
-        // Filtrar las solicitudes donde el usuario logeado no sea user1
         const filteredRequests = data.filter(
           (friendship) =>
             friendship.status === "PENDING" &&

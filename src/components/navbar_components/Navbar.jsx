@@ -4,12 +4,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUsers, faGear } from '@fortawesome/free-solid-svg-icons';
 import SearchBar from "./SearchBar";
 import "./styles/Navbar.css";
-import placeHolderImage from "../../assets/icon_images/user-icon.png"
+import placeHolderImage from "../../assets/icon_images/user-icon.png";
 import logo from '../../assets/logos/melodymango-logo-removebg.png';
 
 export default function Navbar({ setIsLoggedIn, setToken }) {
   const [username, setUsername] = useState(localStorage.getItem("username"));
-  const [userImage, setUserImage] = useState(localStorage.getItem("spotifyUserImage"));
+  const [userImage, setUserImage] = useState(localStorage.getItem("spotifyLoggedUserImage"));
   const [menuVisible, setMenuVisible] = useState(false);
   const navigate = useNavigate();
   const dropdownRef = useRef(null);
@@ -18,11 +18,10 @@ export default function Navbar({ setIsLoggedIn, setToken }) {
     const confirmed = window.confirm("Are you sure you want to logout?");
     if (confirmed) {
       setToken(null);
-      localStorage.clear();
       setUsername("");
       setUserImage("");
+      localStorage.clear();
       setIsLoggedIn(false);
-      navigate("/");
       const width = 700;
       const height = 500;
       const left = window.screen.width / 2 - width / 2;
@@ -34,7 +33,9 @@ export default function Navbar({ setIsLoggedIn, setToken }) {
       );
       setTimeout(() => {
         spotifyLogoutWindow.close();
-      }, 2000);
+        navigate("/");
+        window.location.reload();
+      }, 500);
     }
   };
 
@@ -50,7 +51,7 @@ export default function Navbar({ setIsLoggedIn, setToken }) {
 
   useEffect(() => {
     setUsername(localStorage.getItem("username"));
-    setUserImage(localStorage.getItem("spotifyUserImage"));
+    setUserImage(localStorage.getItem("spotifyLoggedUserImage"));
     document.addEventListener("click", handleClickOutside, true);
     return () => {
       document.removeEventListener("click", handleClickOutside, true);
@@ -67,17 +68,9 @@ export default function Navbar({ setIsLoggedIn, setToken }) {
         <Link className="nav-link" to={`/profile/${username}`}>
           Profile
         </Link>
-        <div className="separation-div"></div>
-        <Link className="nav-link" to="/top">
-          Top
-        </Link>
       </div>
       <div className="logo-container">
-        <img
-          className="navbar-logo"
-          src={logo}
-          alt="example-logo"
-        />
+        <img className="navbar-logo" src={logo} alt="example-logo" />
         <h3>Melody Mango</h3>
       </div>
       <div className="search-bar-div">
@@ -95,9 +88,7 @@ export default function Navbar({ setIsLoggedIn, setToken }) {
           {username}
         </p>
         <div className={menuVisible ? "dropdown-container show" : "dropdown-container"}>
-          <div
-            className={menuVisible ? "dropdown-content show" : "dropdown-content"}
-          >
+          <div className={menuVisible ? "dropdown-content show" : "dropdown-content"}>
             <div>
               <img src={userImage || placeHolderImage} alt="user-icon" /> 
               <span>{username}</span>

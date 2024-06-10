@@ -1,15 +1,25 @@
 import SpotifyWebApi from "spotify-web-api-js";
-import { fetchUserId, fetchSpotifyDataByUserId } from "./api_calls";
+import { fetchUserId, fetchSpotifyDataByUserId, fetchSpotifyTokenByUserId } from "./api_calls";
 
 const spotifyApi = new SpotifyWebApi();
 
 export const handleLogin = () => {
+  const scopes = [
+    'user-top-read',
+    'user-read-currently-playing',
+    'user-read-playback-state',
+    'user-read-email',
+    'user-read-private',
+    'user-read-recently-played' 
+  ].join('%20'); 
+
   window.location = `https://accounts.spotify.com/authorize?client_id=${
     import.meta.env.VITE_SPOTIFY_CLIENT_ID
   }&response_type=code&redirect_uri=${
     import.meta.env.VITE_SPOTIFY_REDIRECT_URI
-  }&scope=user-top-read user-read-currently-playing user-read-playback-state user-read-email user-read-private`;
+  }&scope=${scopes}`;
 };
+
 
 export const saveSpotifyTokenToDatabase = async (username, accessToken, refreshToken) => {
   try {
@@ -229,5 +239,60 @@ export const fetchSpotifyTokenFromDatabase = async (username, setSpotifyToken, s
     console.error("Error fetching Spotify token from database:", error);
   }
 };
+
+// export const fetchUserPlaybackHistory = async (accessToken) => {
+//   try {
+//     const response = await fetch('https://api.spotify.com/v1/me/player/recently-played?limit=50', {
+//       method: 'GET',
+//       headers: {
+//         'Authorization': `Bearer ${accessToken}`,
+//       },
+//     });
+
+//     if (!response.ok) {
+//       throw new Error(`Failed to fetch user playback history: ${response.statusText}`);
+//     }
+
+//     const data = await response.json();
+//     return data.items;
+//   } catch (error) {
+//     console.error("Error fetching user playback history:", error);
+//     return null;
+//   }
+// };
+
+// export const getTopListenersForSong = async (songId) => {
+//   try {
+//     const usersResponse = await fetch(`${import.meta.env.VITE_BACKEND_URL}/users`);
+//     const users = await usersResponse.json();
+//     let listenersCount = {};
+
+//     for (const user of users) {
+//       const spotifyDataResponse = await fetchSpotifyTokenByUserId(user.userId);
+//       const accessToken = spotifyDataResponse;
+
+//       const playbackHistory = await fetchUserPlaybackHistory(accessToken);
+//       console.log(accessToken);
+//       console.log(playbackHistory);
+
+//       playbackHistory.forEach(play => {
+//         if (play.track.id === songId) {
+//           if (listenersCount[user.username]) {
+//             listenersCount[user.username]++;
+//           } else {
+//             listenersCount[user.username] = 1;
+//           }
+//         }
+//       });
+//     }
+//     const sortedListeners = Object.entries(listenersCount).sort((a, b) => b[1] - a[1]);
+    
+//     return sortedListeners;
+//   } catch (error) {
+//     console.error("Error getting top listeners for song:", error);
+//     return null;
+//   }
+// };
+
 
 export const spotifyApiInstance = spotifyApi;
